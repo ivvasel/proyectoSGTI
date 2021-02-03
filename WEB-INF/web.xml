@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app>
+<display-name>Proyecto STGI</display-name>
+<description>Proyecto de curso STGI </description>
+
+
+<servlet>
+<servlet-name>Tabla</servlet-name>
+<description> Tablero inicial </description>
+<servlet-class>Tabla</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>ponficha </servlet-name>
+	<servlet-class>ponFicha</servlet-class>
+</servlet>
+
+
+
+<servlet-mapping>
+<servlet-name>Tabla</servlet-name>
+<url-pattern>/servlets/tabla</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>ponficha</servlet-name>
+	<url-pattern>/servlets/ponficha</url-pattern>
+</servlet-mapping>
+
+
+<session-config>
+<session-timeout>30</session-timeout>
+</session-config>
+</web-app>
