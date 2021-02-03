@@ -11,7 +11,7 @@
 </servlet>
 
 <servlet>
-	<servlet-name>ponficha </servlet-name>
+	<servlet-name>ponFicha</servlet-name>
 	<servlet-class>ponFicha</servlet-class>
 </servlet>
 
@@ -23,8 +23,8 @@
 </servlet-mapping>
 
 <servlet-mapping>
-	<servlet-name>ponficha</servlet-name>
-	<url-pattern>/servlets/ponficha</url-pattern>
+	<servlet-name>ponFicha</servlet-name>
+	<url-pattern>/servlets/ponFicha</url-pattern>
 </servlet-mapping>
 
 

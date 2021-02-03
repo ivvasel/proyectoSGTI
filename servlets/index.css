@@ -1,0 +1,36 @@
+.invisible{
+	background: white;
+	width: auto;
+	height:auto;
+	border: 0px;	
+}
+
+.invisible:focus{
+	outline: none;
+
+}
+
+.invisible:hover{
+	cursor: pointer;
+}
+
+.filafichas{
+	width: 40px;
+	height: 40px;
+}
+
+
+
+.ficharoja{
+	width: 30px;
+	height: 30px;
+	background: red;
+	border-radius: 20px;
+}
+
+.ficha_azul{
+	width: 30px;
+	height: 30px;
+	background: blue;
+	border-radius: 20px;
+}
