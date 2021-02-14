@@ -15,6 +15,11 @@
 	<servlet-class>ponFicha</servlet-class>
 </servlet>
 
+<servlet>
+	<servlet-name>MenuPrincipal</servlet-name>
+	<servlet-class>MenuPrincipal</servlet-class>
+</servlet>
+
 
 
 <servlet-mapping>
@@ -26,6 +31,12 @@
 	<servlet-name>ponFicha</servlet-name>
 	<url-pattern>/servlets/ponFicha</url-pattern>
 </servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>MenuPrincipal</servlet-name>
+	<url-pattern>/menu</url-pattern>
+</servlet-mapping>
+
 
 
 <session-config>

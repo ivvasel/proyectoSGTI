@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 <Context 
 	reloadable="true">	
 </Context>
+=======
+<Context reloadable="true"></Context>
+>>>>>>> ba273da... Menu de usuario...
