@@ -24,7 +24,7 @@ public class MenuPrincipal extends HttpServlet{
             out.println("<body>");
             out.println("<h1>¡BIENVENIDO!</h1>");
             out.println("<nav >");
-            out.println("<a href=\"#\" class=\"nav-enlace\"> INICIAR PARTIDA </a>");
+            out.println("<a href=\"nueva\" class=\"nav-enlace\"> INICIAR PARTIDA </a>");
             out.println("<a href=\"#\" class=\"nav-enlace\"> MIS PARTIDAS </a>");
             out.println("<a href=\"#\" class=\"nav-enlace\"> ESTADISTICAS </a>");
             out.println("<a href=\"#\" class=\"nav-enlace\"> SALIR </a>");

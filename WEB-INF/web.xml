@@ -20,6 +20,12 @@
 	<servlet-class>MenuPrincipal</servlet-class>
 </servlet>
 
+<servlet>
+	<servlet-name>NuevaPartida</servlet-name>
+	<servlet-class>NuevaPartida</servlet-class>
+</servlet>
+
+
 
 
 <servlet-mapping>
@@ -35,6 +41,11 @@
 <servlet-mapping>
 	<servlet-name>MenuPrincipal</servlet-name>
 	<url-pattern>/menu</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>NuevaPartida</servlet-name>
+	<url-pattern>/nueva</url-pattern>
 </servlet-mapping>
 
 
