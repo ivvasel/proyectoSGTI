@@ -6,12 +6,12 @@ function validar(){
     var pdw2 = document.forms["registro"]["pdw2"].value;
     var validacion = true;
     if(nick == "" || nombre =="" || email =="" || pdw1 =="" || pdw2 ==""){
-        alert("Rellene todos los campos");
+        alert("Por favor, rellene todos los campos");
         validacion = false;
     }
     
     if (pdw1 !== pdw2 ) {             
-        alert("CONTRASEÑA IGUAL PUTO");             
+        alert("Los campos de contraseñas deben coincidir");             
         validacion = false;             
     }   
     return validacion;          
