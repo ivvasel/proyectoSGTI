@@ -25,7 +25,20 @@
 	<servlet-class>NuevaPartida</servlet-class>
 </servlet>
 
+<servlet>
+	<servlet-name>PartidaAleatoria</servlet-name>
+	<servlet-class>PartidaAleatoria</servlet-class>
+</servlet>
 
+<servlet>
+	<servlet-name>PartidaAmigos</servlet-name>
+	<servlet-class>PartidaAmigos</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>BuscaJugador</servlet-name>
+	<servlet-class>BuscaJugador</servlet-class>
+</servlet>
 
 
 <servlet-mapping>
@@ -47,6 +60,22 @@
 	<servlet-name>NuevaPartida</servlet-name>
 	<url-pattern>/nueva</url-pattern>
 </servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>PartidaAleatoria</servlet-name>
+	<url-pattern>/nueva/aleatoria</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>PartidaAmigos</servlet-name>
+	<url-pattern>/amigos</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>BuscaJugador</servlet-name>
+	<url-pattern>/busca</url-pattern>
+</servlet-mapping>
+
 
 
 
