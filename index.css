@@ -1,0 +1,30 @@
+.nav-enlace{
+    display: inline-block;
+    background: purple;
+    color: #fff;
+    padding: 10px 30px;
+    text-decoration: none;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+nav{
+    background: red;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+h1{
+    align-content: center;
+    font-size: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: yellow
+
+}
+
+.titulo{
+    text-align: center;
+    background-color: purple;
+    
+}
+
