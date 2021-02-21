@@ -40,6 +40,11 @@
 	<servlet-class>BuscaJugador</servlet-class>
 </servlet>
 
+<servlet>
+	<servlet-name>ServletRegistro</servlet-name>
+	<servlet-class>ServletRegistro</servlet-class>
+</servlet>
+
 
 <servlet-mapping>
 <servlet-name>Tabla</servlet-name>
@@ -74,6 +79,11 @@
 <servlet-mapping>
 	<servlet-name>BuscaJugador</servlet-name>
 	<url-pattern>/busca</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>ServletRegistro</servlet-name>
+	<url-pattern>/registro</url-pattern>
 </servlet-mapping>
 
 
