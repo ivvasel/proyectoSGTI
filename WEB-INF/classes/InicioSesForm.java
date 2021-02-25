@@ -9,14 +9,13 @@ public class InicioSesForm extends HttpServlet {
         try {
             out = res.getWriter();
             res.setContentType("text/HTML");
-            out.println("<HTML> <BODY>");
+            out.println("<HTML><BODY>");
             out.println("<TITLE> Indica tu usuario y contraseña a continuación </TITLE> <BR>");
-            out.println("<FORM>");
-            out.println("<ACTION=ServletInicio METHOD=POST>");
-            out.println("Usuario: <INPUT TYPE=TEXT NAME=nick> <BR>");
-            out.println("Contraseña: <INPUT TYPE=PASSWORD NAME=pwd> <BR>");
-            out.println("<INPUT TYPE=SUBMIT VALUE=Aceptar>");
-            out.println("</FORM> </BODY> </HTML>");
+            out.println("<FORM ACTION=\"InicioSesion\">");
+            out.println("Usuario: <INPUT TYPE=\"TEXT\" NAME=\"nick\"> <BR>");
+            out.println("Contraseña: <INPUT TYPE=\"PASSWORD\" NAME=\"pwd\"> <BR>");
+            out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Aceptar\">");
+            out.println("</FORM></BODY></HTML>");
             
             out.close();
         }

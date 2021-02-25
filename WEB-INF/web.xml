@@ -40,6 +40,17 @@
 	<servlet-class>BuscaJugador</servlet-class>
 </servlet>
 
+<servlet>
+	<servlet-name>InicioSesion</servlet-name>
+	<servlet-class>InicioSes</servlet-class>
+</servlet>
+
+
+<servlet>
+	<servlet-name>InicioSesionForm</servlet-name>
+	<servlet-class>InicioSesForm</servlet-class>
+</servlet>
+
 
 <servlet-mapping>
 <servlet-name>Tabla</servlet-name>
@@ -75,6 +86,17 @@
 	<servlet-name>BuscaJugador</servlet-name>
 	<url-pattern>/busca</url-pattern>
 </servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>InicioSesionForm</servlet-name>
+	<url-pattern>/InicioSesionForm</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>InicioSesion</servlet-name>
+	<url-pattern>/InicioSesion</url-pattern>
+<servlet-mapping>
+
 
 
 
