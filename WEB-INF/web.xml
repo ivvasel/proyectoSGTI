@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app>
 <display-name>Proyecto STGI</display-name>
-<description>Proyecto de curso STGI </description>
+<description>Proyecto de curso STGI 6 en raya </description>
 
 <servlet>
 	<servlet-name>InicioSesionForm</servlet-name>
@@ -55,9 +55,6 @@
 	<servlet-name>CreaPartida</servlet-name>
 	<servlet-class>CreaPartida</servlet-class>
 </servlet>
-
-
-
 
 
 <servlet-mapping>
