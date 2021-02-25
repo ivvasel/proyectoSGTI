@@ -13,51 +13,58 @@ public class CreaPartida extends HttpServlet{
         String nick;
         String nickcontrincante;
         HttpSession misesion;
-        int idUsuarioActual;
-        int idAmigo;
+        int idUsuarioActual=0;
+        int idAmigo=0;
         
         try{
             res.setContentType("text/html");
             out=res.getWriter();
-            //out.println("<html>");
+                out.println("<HTML> <BODY>");
             misesion=(HttpSession) req.getSession();
             nick=(String)misesion.getAttribute("nick");
-           // out.println(nick+"OK");
+
+                out.println(nick+"<br>");
+
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
             nickcontrincante=req.getParameter("contrincante");
-           // out.println(nickcontrincante);
-            SQL="SELECT * FROM usuarios WHERE Nick='"+nickcontrincante+"'";
+
+                out.println(nickcontrincante+"<br>");
+
+            SQL="SELECT  * FROM usuarios WHERE Nick='"+nickcontrincante+"'";
             //out.println(SQL);
             st=con.createStatement();
             //out.println("OK");
             rs=st.executeQuery(SQL);
-            //out.println("OK");
-            idAmigo=rs.getInt("IdUsuario");
-           // out.println(idAmigo);
+
+            rs.next();
+            idAmigo=rs.getInt(1);
+            out.println("idAmigo ="+idAmigo+"<br>");
+            
             //out.println(idAmigo);
             SQL3="SELECT * FROM usuarios WHERE Nick='"+nick+"'";
-            st3=con.createStatement();
-            rs2=st3.executeQuery(SQL3);
-            //out.println("OK");
-            //out.println("<html>");
-            
-            idUsuarioActual=rs.getInt("IdUsuario");
+            st2=con.createStatement();
+            rs2=st2.executeQuery(SQL3); 
+                //out.println(rs2);     
+            rs2.next();     
+            idUsuarioActual=rs2.getInt(1);
+                out.println("idPropio ="+idUsuarioActual+"<br>");
+                out.println("OK<br>");
             //idUsuarioActual=(int) misesion.getAttribute("idUsuario");
             SQL2="INSERT INTO partidas (IdJugador1,IdJugador2,Activa) VALUES ("+idUsuarioActual+","+idAmigo+",1)";
-            st2=con.createStatement();
-            st2.executeUpdate(SQL2);
+            st3=con.createStatement();
+            st3.executeUpdate(SQL2);
             
-            
+            out.println("</BODY> </HTML>");
             rs.close();
             rs2.close();
             st.close();
-            st2.close();
             st3.close();
+            st2.close();
             con.close();
            // out.close();
             
-            res.sendRedirect("tabla"); 
+            res.sendRedirect("../tabla"); 
         }catch (Exception e){
             System.err.println(e);
         }
