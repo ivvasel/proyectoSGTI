@@ -5,21 +5,21 @@
 <title>registro</title>
 <script src='/proyectoSGTI/web/recursos/javascripts/registro.js'></script>
 <script src='recursos/javascripts/registro.js'></script>
-<link rel='stylesheet' href='recursos/estilos/prueba.css' type='text/css' media='all'>
+<link rel='stylesheet' href='recursos/estilos/registro.css' type='text/css' media='all'>
 </head>
 
-<body>
+<body class = 'colorfondo3'>
     
     <div id='encabezado'>
-    <div class='titulo'>
+    <div class='colorletra1 colorfondo1' id='titulo'>
          CUATRO EN RAYA!
     </div>
-    <div class='subtitulo'>
+    <div class='colorletra2 colorfondo2'id='subtitulo'>
             Registro de nuevo usuario
     </div>
     </div>
     
-<form action='http:\\localhost:8080/proyectoSGTI/registro' method='post' name='registro' onsubmit='return validar()'>
+<form action='http:\\localhost:8080/proyectoSGTI/registro' method='post' name='registro' onsubmit='return validar()' class='colorfondo2'>
         <table>
             <tr>
                 <td><strong>Usuario</strong></td>
@@ -45,7 +45,7 @@
             </tr>
             
         </table>
-        <div>
+        <div class='botones'>
             
                 <input type='submit' value='Registrar'> 
                 <input type='button' value='Cancelar' onclick='history.back()' >
