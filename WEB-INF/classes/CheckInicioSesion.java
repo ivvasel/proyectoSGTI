@@ -13,9 +13,14 @@ public class CheckInicioSesion extends HttpServlet{
         String nick;
         String pass;
         
+        HttpSession misesion;
+        
+        
         try{
             nick=req.getParameter("nick");
             pass=req.getParameter("password");
+            
+            misesion=req.getSession(true);
             
             res.setContentType("text/html");
             out=res.getWriter();
@@ -30,6 +35,7 @@ public class CheckInicioSesion extends HttpServlet{
             rs=st.executeQuery(SQL);
             
             if(rs.next()){
+                misesion.setAttribute("nick",nick);
                 res.sendRedirect("menu");
             }else{
                 out.println("<html><body>");
