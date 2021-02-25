@@ -47,7 +47,7 @@
 
 
 <servlet>
-	<servlet-name>InicioSesionForm</servlet-name>
+	<servlet-name>InicioSesForm</servlet-name>
 	<servlet-class>InicioSesForm</servlet-class>
 </servlet>
 
@@ -88,8 +88,8 @@
 </servlet-mapping>
 
 <servlet-mapping>
-	<servlet-name>InicioSesionForm</servlet-name>
-	<url-pattern>/InicioSesionForm</url-pattern>
+	<servlet-name>InicioSesForm</servlet-name>
+	<url-pattern>/iniciosesform</url-pattern>
 </servlet-mapping>
 
 <servlet-mapping>

@@ -7,8 +7,9 @@ public class InicioSesForm extends HttpServlet {
         PrintWriter out;
 
         try {
+            res.setContentType("text/html");
             out = res.getWriter();
-            res.setContentType("text/HTML");
+            
             out.println("<HTML><BODY>");
             out.println("<TITLE> Indica tu usuario y contraseña a continuación </TITLE> <BR>");
             out.println("<FORM ACTION=\"InicioSesion\">");
@@ -19,6 +20,6 @@ public class InicioSesForm extends HttpServlet {
             
             out.close();
         }
-        catch (Exception e) {System.out.println(e);}
+        catch (Exception e) {System.err.println(e);}
     }
 }
