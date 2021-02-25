@@ -3,6 +3,12 @@
 <display-name>Proyecto STGI</display-name>
 <description>Proyecto de curso STGI </description>
 
+<servlet>
+	<servlet-name>InicioSesionForm</servlet-name>
+	<servlet-class>InicioSesionForm</servlet-class>
+</servlet>
+
+
 
 <servlet>
 <servlet-name>Tabla</servlet-name>
@@ -39,6 +45,25 @@
 	<servlet-name>BuscaJugador</servlet-name>
 	<servlet-class>BuscaJugador</servlet-class>
 </servlet>
+
+<servlet>
+	<servlet-name>CheckInicioSesion</servlet-name>
+	<servlet-class>CheckInicioSesion</servlet-class>
+</servlet>
+
+
+
+
+<servlet-mapping>
+	<servlet-name>InicioSesionForm</servlet-name>
+	<url-pattern>/iniciosesionform</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>CheckInicioSesion</servlet-name>
+	<url-pattern>/iniciosesion</url-pattern>
+</servlet-mapping>
+
 
 
 <servlet-mapping>
