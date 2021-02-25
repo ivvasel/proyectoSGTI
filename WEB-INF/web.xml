@@ -51,6 +51,12 @@
 	<servlet-class>CheckInicioSesion</servlet-class>
 </servlet>
 
+<servlet>
+	<servlet-name>CreaPartida</servlet-name>
+	<servlet-class>CreaPartida</servlet-class>
+</servlet>
+
+
 
 
 
@@ -68,7 +74,7 @@
 
 <servlet-mapping>
 <servlet-name>Tabla</servlet-name>
-<url-pattern>/servlets/tabla</url-pattern>
+<url-pattern>/tabla</url-pattern>
 </servlet-mapping>
 
 <servlet-mapping>
@@ -99,6 +105,11 @@
 <servlet-mapping>
 	<servlet-name>BuscaJugador</servlet-name>
 	<url-pattern>/busca</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>CreaPartida</servlet-name>
+	<url-pattern>/nueva/crea</url-pattern>
 </servlet-mapping>
 
 

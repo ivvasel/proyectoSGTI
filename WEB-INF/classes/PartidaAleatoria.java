@@ -25,7 +25,7 @@ public class PartidaAleatoria extends HttpServlet{
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>¿Contra quién quieres jugar?</h1>");
-            out.println("<form action=\"\">");
+            out.println("<form action=\"crea\">");
             out.println("<select name=\"contrincante\">");
             while(rs.next()){
                 out.println("<option>"+rs.getString("Nick")+"</option>");

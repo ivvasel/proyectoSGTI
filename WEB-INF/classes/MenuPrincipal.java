@@ -30,7 +30,7 @@ public class MenuPrincipal extends HttpServlet{
             out.println("<a href=\"nueva\" class=\"nav-enlace\"> INICIAR PARTIDA </a>");
             out.println("<a href=\"#\" class=\"nav-enlace\"> MIS PARTIDAS </a>");
             out.println("<a href=\"#\" class=\"nav-enlace\"> ESTADISTICAS </a>");
-            out.println("<a href=\"#\" class=\"nav-enlace\"> SALIR </a>");
+            out.println("<a href=\"index.html\" class=\"nav-enlace\"> SALIR </a>");
             out.println("</nav>");
             out.println("<img src=\"images/tablero.jfif\">");
             out.println("</body></html>");
