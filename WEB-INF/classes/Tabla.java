@@ -29,7 +29,7 @@ public class Tabla extends HttpServlet{
         out.println("</head>");
         out.println("<body>");
         out.println("<form action="+"\"tabla\"" +">");
-        out.println("<table width=" +"\"400\"" +"height=" +"\"40px\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
+        out.println("<table width=" +"\"auto\"" +"height=" +"\"auto\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
         +"cellpadding=" +"\"2\"" +">");
         out.println("<tr align=" +"\"center\"" +">");
         
@@ -39,20 +39,22 @@ public class Tabla extends HttpServlet{
         }*/
         
         for(int i=1;i<7;i++){
-            out.println("<td class="+"\"filafichas\""+">"+"<input type=" +"\"submit\"" +"name="+"\"BO"+i+"\"" +"value="+"\"BO"+i+"\""+"class="+
+            out.println("<td class="+"\"filabotones\""+">"+"<input type=" +"\"submit\"" +"name="+"\"BO"+i+"\"" +"value="+"\"BO"+i+"\""+"class="+
             "\"invisible\""+">");
         }
         out.println("</tr>");
-        out.println("</table>"); //Primera fila de botones
+        out.println("</table>"); //FIN Primera fila de botones
         out.println("</form>");
 
-        out.println("<table width=" +"\"400\"" +"height=" +"\"400px\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
+        
+        //Tablero para fichas
+        out.println("<table width=" +"\"auto\"" +"height=" +"\"auto\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
         +"cellpadding=" +"\"2\"" +">");
         
 
         
         for (int i=1;i<7;i++){
-            out.println("<tr align=" +"\"center\"" +">");
+            out.println("<tr class=\"filatablero\" align=" +"\"center\"" +">");
             for (int j=1;j<7;j++){                
                 out.println("<td id="+"\"cas"+i+j+"\">"+tablero[i-1][j-1]+"</td>");
             }

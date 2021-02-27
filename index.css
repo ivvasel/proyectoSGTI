@@ -28,16 +28,22 @@ h1{
     
 }
 
+.filatablero{
+    height: 80px;
+    width: 80px;
+}
+
+.filabotones{
+    height: 80px;
+    width: 80px;
+}
 
 .ficharoja{
-	width: auto;
-	height: 30px;
-	background: red;
-	border-radius: 20px;
+	width: 80px;
+	height: 80px;
+	background: blue;
+	border-radius: 40px;
 }
 
-td{
-    width: auto;
-    height: auto;
-}
+
 
