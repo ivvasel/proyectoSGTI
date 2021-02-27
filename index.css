@@ -19,7 +19,6 @@ h1{
     font-size: 50px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: red
-
 }
 
 .titulo{
@@ -38,11 +37,23 @@ h1{
     width: 80px;
 }
 
-.ficharoja{
+.fichaazul{
 	width: 80px;
 	height: 80px;
 	background: blue;
 	border-radius: 40px;
+}
+
+.ficharoja{
+    width: 80px;
+	height: 80px;
+	background: red;
+	border-radius: 40px;
+}
+
+.casillas{
+    width: auto;
+    height: auto;
 }
 
 
