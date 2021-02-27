@@ -7,9 +7,16 @@ public class Tabla extends HttpServlet{
         res.setContentType("text/html");
         PrintWriter out=res.getWriter();
         String tablero[][]=new String [6][6];
+        
         for (int i=0;i<tablero.length;i++){
             for (int j=0;j<tablero.length;j++){
                 tablero[i][j]="";
+            }
+        }
+        
+        for (int i=0;i<3;i++){
+            for (int j=0;j<tablero.length;j++){
+                tablero[i][j]="<div class=\"ficharoja\"></div>";
             }
         }
         
@@ -21,7 +28,7 @@ public class Tabla extends HttpServlet{
         out.println("<link rel="+"\"stylesheet\"" +"href="+"\"index.css\""+">");
         out.println("</head>");
         out.println("<body>");
-        out.println("<form action="+"\"ponFicha\"" + "method="+"\"get\""+">");
+        out.println("<form action="+"\"tabla\"" +">");
         out.println("<table width=" +"\"400\"" +"height=" +"\"40px\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
         +"cellpadding=" +"\"2\"" +">");
         out.println("<tr align=" +"\"center\"" +">");
