@@ -10,7 +10,7 @@ public class Tabla extends HttpServlet{
         String tablero[][]=new String [6][6];
         for (int i=0;i<tablero.length;i++){
             for (int j=0;j<tablero.length;j++){
-                tablero[i][j]="";
+                tablero[i][j]="<div class=\"ficharoja\"></div>";
             }
         }
         
@@ -22,18 +22,13 @@ public class Tabla extends HttpServlet{
         out.println("<link rel="+"\"stylesheet\"" +"href="+"\"index.css\""+">");
         out.println("</head>");
         out.println("<body>");
-        out.println("<form action="+"\"ponFicha\"" + "method="+"\"get\""+">");
+        out.println("<form action="+"\"tabla\"");
         out.println("<table width=" +"\"400\"" +"height=" +"\"40px\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
         +"cellpadding=" +"\"2\"" +">");
         out.println("<tr align=" +"\"center\"" +">");
         
-       /* for(int i=1; i<7; i++){
-            out.println("<td><button id=" +"\"col"+i+"\"" + ">Ficha aqui"
-            +"</button></td>");
-        }*/
-        
         for(int i=1;i<7;i++){
-            out.println("<td class="+"\"filafichas\""+">"+"<input type=" +"\"submit\"" +"name="+"\"BO"+i+"\"" +"value="+"\"BO"+i+"\""+"class="+
+            out.println("<td class=\"filafichas\">"+"<input type=" +"\"submit\"" +"name="+"\"BO"+i+"\"" +"value="+"\"BO"+i+"\""+"class="+
             "\"invisible\""+">");
         }
         out.println("</tr>");
@@ -44,7 +39,7 @@ public class Tabla extends HttpServlet{
         +"cellpadding=" +"\"2\"" +">");
         
 
-        
+        //Celdas para las fichas
         for (int i=1;i<7;i++){
             out.println("<tr align=" +"\"center\"" +">");
             for (int j=1;j<7;j++){                
