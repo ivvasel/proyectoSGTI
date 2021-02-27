@@ -30,9 +30,14 @@ h1{
 
 
 .ficharoja{
-	width: 30px;
+	width: auto;
 	height: 30px;
 	background: red;
 	border-radius: 20px;
+}
+
+td{
+    width: auto;
+    height: auto;
 }
 
