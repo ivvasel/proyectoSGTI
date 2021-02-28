@@ -51,6 +51,7 @@
 	<servlet-class>ServletRegistro</servlet-class>
 </servlet>
 
+<servlet>
 	<servlet-name>CheckInicioSesion</servlet-name>
 	<servlet-class>CheckInicioSesion</servlet-class>
 </servlet>
