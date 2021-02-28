@@ -18,27 +18,37 @@ public class ServletRegistro extends HttpServlet {
             //out.println("<meta charset='utf-8' />");
             out.println("<title>registro</title>");
             out.println("<script src='/proyectoSGTI/web/recursos/javascripts/registro.js'></script>");
-            out.println("<link rel='stylesheet' href='web/recursos/estilos/prueba.css' type='text/css' media='all'>");
-            out.println("<link rel='stylesheet' href='/proyectoSGTI/menu.css' type='text/css' media='all'>");
+            out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/prueba.css' type='text/css' media='all'>");
+            out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/registro.css' type='text/css' media='all'>");
+            out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/principal.css' type='text/css' media='all'>");
+            out.println("</head>");   
             
-            out.println("</head>");        
-            
-            
-            out.println("<body>");
-            out.println("<h1> Registro de nuevo usuario </h1>");
-            out.println("<form action='registro' method='post' name='registro' onsubmit='return validar()'>");
+            out.println("<body class='colorfondo3'>");
+
+            out.println("<div id='encabezado'>");
+                out.println("<div class='colorletra1 colorfondo1 letra1' id='titulo'>");
+                    out.println("CUATRO EN RAYA!");
+                out.println("</div>");
+                out.println("<div class='colorletra2 colorfondo2 letra1'id='subtitulo'>");
+                    out.println("Registro de nuevo usuario");
+                out.println("</div>");
+            out.println("</div>");
+
+            out.println("<form action='registro' method='post' name='registro' onsubmit='return validar()' class='colorfondo2 letra2'>");
             out.println("<table>");
-            out.println("<tr><td><strong>Usuario</strong></td><td><input name='nick' type='text' /></td></tr>");
-            out.println("<tr><td><strong>Nombre</strong></td><td><input name='nombre' type='text' /></td></tr>");
+                out.println("<tr><td><strong>Usuario</strong></td><td><input name='nick' type='text' /></td></tr>");
+                out.println("<tr><td><strong>Nombre</strong></td><td><input name='nombre' type='text' /></td></tr>");
                            
-            out.println("<tr><td><strong>Correo electrï¿½nico</strong></td><td><input name='email' type='email' /></td></tr>");
-            out.println("<tr><td><strong>Contraseï¿½a</strong></td><td><input name='pdw1' type='password' /></td></tr>");
-            out.println("<tr><td><strong>Repita contraseï¿½a</strong></td><td><input name='pdw2' type='password' /></td></tr>");
+                out.println("<tr><td><strong>Correo electrónico</strong></td><td><input name='email' type='email' /></td></tr>");
+                out.println("<tr><td><strong>Contraseña</strong></td><td><input name='pdw1' type='password' /></td></tr>");
+                out.println("<tr><td><strong>Repita contraseña</strong></td><td><input name='pdw2' type='password' /></td></tr>");
                         
             out.println("</table>");
-            out.println("<table>");
-            out.println("<tr><td><input type='submit' value='Registrar'> </td><td><input type='button' value='Cancelar' onclick='history.back()' > </td></tr>");
-            
+
+            out.println("<div class='botones'>");            
+                out.println("<input class ='letra2' type='submit' value='Registrar'> ");
+                out.println("<input class ='letra2' type='button' value='Cancelar' onclick='history.back()' >");            
+            out.println("</div>");
             out.println("</form>");
             out.println("</body>");
             out.println("</html>");
@@ -65,7 +75,7 @@ public class ServletRegistro extends HttpServlet {
             pwd = req.getParameter("pdw1");
             //color = req.getParameter("Color");
 
-            SQL="SELECT * FROM usuarios WHERE Nick=" + nick;
+            SQL="SELECT * FROM usuarios WHERE Nick='"+nick+"'";
             rs= st.executeQuery(SQL);
             if(rs.next()) {
                 out = res.getWriter();
