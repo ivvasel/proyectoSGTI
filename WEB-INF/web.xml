@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app>
 <display-name>Proyecto STGI</display-name>
-<description>Proyecto de curso STGI </description>
+<description>Proyecto de curso STGI 6 en raya </description>
+
+<servlet>
+	<servlet-name>InicioSesionForm</servlet-name>
+	<servlet-class>InicioSesionForm</servlet-class>
+</servlet>
+
 
 
 <servlet>
@@ -41,20 +47,31 @@
 </servlet>
 
 <servlet>
-	<servlet-name>InicioSesion</servlet-name>
-	<servlet-class>InicioSes</servlet-class>
+	<servlet-name>CheckInicioSesion</servlet-name>
+	<servlet-class>CheckInicioSesion</servlet-class>
 </servlet>
 
-
 <servlet>
-	<servlet-name>InicioSesForm</servlet-name>
-	<servlet-class>InicioSesForm</servlet-class>
+	<servlet-name>CreaPartida</servlet-name>
+	<servlet-class>CreaPartida</servlet-class>
 </servlet>
 
 
 <servlet-mapping>
+	<servlet-name>InicioSesionForm</servlet-name>
+	<url-pattern>/iniciosesionform</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>CheckInicioSesion</servlet-name>
+	<url-pattern>/iniciosesion</url-pattern>
+</servlet-mapping>
+
+
+
+<servlet-mapping>
 <servlet-name>Tabla</servlet-name>
-<url-pattern>/servlets/tabla</url-pattern>
+<url-pattern>/tabla</url-pattern>
 </servlet-mapping>
 
 <servlet-mapping>
@@ -88,15 +105,9 @@
 </servlet-mapping>
 
 <servlet-mapping>
-	<servlet-name>InicioSesForm</servlet-name>
-	<url-pattern>/iniciosesform</url-pattern>
+	<servlet-name>CreaPartida</servlet-name>
+	<url-pattern>/nueva/crea</url-pattern>
 </servlet-mapping>
-
-<servlet-mapping>
-	<servlet-name>InicioSesion</servlet-name>
-	<url-pattern>/InicioSesion</url-pattern>
-<servlet-mapping>
-
 
 
 
