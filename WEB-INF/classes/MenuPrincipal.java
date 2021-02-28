@@ -10,10 +10,13 @@ public class MenuPrincipal extends HttpServlet{
         ResultSet rs;
         String SQL;
         PrintWriter out;
-        
+        HttpSession misesion;
+        String nick;
         try{
             //Class.forName("com.mysql.jdbc.Driver");
             //con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
+            misesion=(HttpSession) req.getSession();
+            nick=(String) misesion.getAttribute("nick");
             out=res.getWriter();
             res.setContentType("text/html");
             out.println("<html>");
@@ -22,12 +25,12 @@ public class MenuPrincipal extends HttpServlet{
             
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>�BIENVENIDO!</h1>");
+            out.println("<h1>�BIENVENIDO "+nick+"!</h1>");
             out.println("<nav >");
             out.println("<a href=\"nueva\" class=\"nav-enlace\"> INICIAR PARTIDA </a>");
             out.println("<a href=\"#\" class=\"nav-enlace\"> MIS PARTIDAS </a>");
             out.println("<a href=\"#\" class=\"nav-enlace\"> ESTADISTICAS </a>");
-            out.println("<a href=\"#\" class=\"nav-enlace\"> SALIR </a>");
+            out.println("<a href=\"index.html\" class=\"nav-enlace\"> SALIR </a>");
             out.println("</nav>");
             out.println("<img src=\"images/tablero.jfif\">");
             out.println("</body></html>");
