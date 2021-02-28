@@ -36,7 +36,7 @@ public class TestMovimiento extends HttpServlet{
             rs=st.executeQuery(SQL);
             while(rs.next()){
                 casilla=rs.getString("Numero");
-                fila_string=casilla.substring(0,1);
+                fila_string=casilla.substring(0,1);  
                 columna_string=casilla.substring(1);
                 fila=Integer.parseInt(fila_string);
                 columna=Integer.parseInt(columna_string);//Convertimos indices fila y columna de String a int

@@ -1,3 +1,5 @@
+//Este servlet para procesar el movimiento solicitado por el usuario
+
 import java.io.*;
 import java.sql.*;
 import javax.servlet.*;
@@ -27,20 +29,19 @@ public class Tabla extends HttpServlet{
             tablero=(String[][]) sesion.getAttribute("tablero");
 
             if(boton1!=null){
-                //metodo
+                //metodo columna 1
             }else if(boton2!=null){
-                //metodo
+                //metodo columna 2
             }else if(boton3!=null){
-                //metodo
+                //metodo columna 3
             }else if(boton4!=null){
-                //metodo
+                //metodo columna 4
             }else if(boton5!=null){
-                //metodo
+                //metodo columna 5
             }else{
-                //metodo
+                //metodo columna 6
             }
 
-            
             res.setContentType("text/html");
             out=res.getWriter();
 
@@ -59,14 +60,15 @@ public class Tabla extends HttpServlet{
             +"</button></td>");
             }*/
 
-            for(int i=1;i<7;i++){
-                out.println("<td class="+"\"filabotones\""+">"+"<input type=" +"\"submit\"" +"name="+"\"BO"+i+"\"" +"value="+"\"BO"+i+"\""+"class="+
-                    "\"invisible\""+">");
-            }
+            /* for(int i=1;i<7;i++){
+            out.println("<td class="+"\"filabotones\""+">"+"<input type=" +"\"submit\"" +"name="+"\"BO"+i+"\"" +"value="+"\"BO"+i+"\""+"class="+
+            "\"invisible\""+">");
+            }*/
             out.println("</tr>");
             out.println("</table>"); //FIN Primera fila de botones
             out.println("</form>");
-
+            
+            out.println("<h1> TURNO DEL OPONENTE </h1>");
             //Tablero para fichas
             out.println("<table width=" +"\"530px\"" +"height=" +"\"530px\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
                 +"cellpadding=" +"\"2\"" +">");   
@@ -79,6 +81,10 @@ public class Tabla extends HttpServlet{
                 out.println("</tr>");
             }
             out.println("</table>");
+            
+            out.println("<nav>");
+            out.println("<a href=\"\">VOLVER A MIS PARTIDAS</a>");
+            out.println("</nav>");
             out.println("</body>");
             out.println("</html>");
         } catch (Exception e){
@@ -87,5 +93,5 @@ public class Tabla extends HttpServlet{
         }
 
     }
-
+    
 }
