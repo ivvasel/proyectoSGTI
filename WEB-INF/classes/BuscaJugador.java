@@ -24,8 +24,8 @@ public class BuscaJugador extends HttpServlet{
             out.println("<html>");
             out.println("<body>");
             out.println("<h1>Listado de amigos</h1>");
-            out.println("<form action=\"\">");
-            out.println("<select name=\"nombreAmigo\">");
+            out.println("<form action=\"nueva/crea\">");
+            out.println("<select name=\"contrincante\">");
             while(rs.next()){
                 out.println("<option>"+rs.getString("Nick")+"</option>");
             }
