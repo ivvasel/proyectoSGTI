@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rammetto+One&family=Roboto+Mono:wght@600&display=swap');
+body{
+    color:black;
+    background-color:#8db3d6;
+}
 .letra1{
     font-family: monospace;
 }
