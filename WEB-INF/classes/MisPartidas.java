@@ -7,19 +7,23 @@ import javax.servlet.http.*;
 public class MisPartidas extends HttpServlet{
     public void doGet (HttpServletRequest req, HttpServletResponse res){
         Connection con;
-        ResultSet rs,rs2;
-        Statement st,st2;
-        String SQL,SQL2;
+        ResultSet rs,rs2,rs3;
+        Statement st,st2,st3;
+        String SQL,SQL2,SQL3;
         PrintWriter out;
         HttpSession sesion;
         int idUsuario;
         int idPartida;
+        //String nick_mio;
+        String rival1;
+        String rival2;
         try{
             sesion=(HttpSession) req.getSession(true);
             idUsuario=(int)sesion.getAttribute("idUsuario");
+            //nick_mio=(String)sesion.getAttribute("nick");
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
-            SQL="SELECT IdPartida FROM partidas WHERE IdJugador="+idUsuario+"AND Turno=1";
+            SQL="SELECT IdPartida FROM partidas WHERE IdJugador="+idUsuario+"AND Turno=1"; //Con esta consulta obtengo el IdPartida de las que me toca
             st=con.createStatement();
             rs=st.executeQuery(SQL);
             res.setContentType("text/html");
@@ -31,7 +35,15 @@ public class MisPartidas extends HttpServlet{
             out.println("<select name=\"partida_continua\">");
             while(rs.next()){
                 idPartida=rs.getInt(1);
-                out.println("<option>Partida con orden número "+idPartida+"</option>");
+                SQL2="SELECT Nick FROM usuarios INNER JOIN partidas ON usuarios.IdUsuario=partidas.IdJugador1 WHERE IdPartida="+idPartida; //Obtengo nick jugador1
+                st2=con.createStatement();
+                rs2=st2.executeQuery(SQL2);
+                SQL3="SELECT Nick FROM usuarios INNER JOIN partidas ON usuarios.IdUsuario=partidas.IdJugador2 WHERE IdPartida="+idPartida; //Obtengo nick jugador2
+                st3=con.createStatement();
+                rs3=st3.executeQuery(SQL3);
+                rs2.next();
+                rs3.next();                             
+                out.println("<option value=\""+idPartida+"\">"+rs2.getString(1)+"VS "+rs3.getString(1)+"</option>");
             }
             out.println("</select>");
             out.println("</form>");

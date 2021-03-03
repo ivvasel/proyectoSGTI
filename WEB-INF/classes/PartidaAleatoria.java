@@ -24,6 +24,8 @@ public class PartidaAleatoria extends HttpServlet{
             out.println("<link rel=\"stylesheet\" href=\"menu.css\">");            
             out.println("</head>");
             out.println("<body>");
+            
+            
             out.println("<h1>¿Contra quién quieres jugar?</h1>");
             out.println("<form action=\"crea\">");
             out.println("<select name=\"contrincante\">");

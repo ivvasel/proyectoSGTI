@@ -11,11 +11,18 @@ public class NuevaPartida extends HttpServlet{
         String SQL,SQL2;
         PrintWriter out;
         String nombreContrincante;
-        
+        HttpSession sesion;
+        String idUsuario_yo;
         
         try{
-            nombreContrincante="";
-            
+            sesion=(HttpSession) req.getSession(true);
+            idUsuario_yo=(String)sesion.getAttribute("idUsuario");
+            Class.forName("com.mysql.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
+            st=con.createStatement();
+            SQL="UPDATE usuarios SET buscaPartida=1 WHERE IdUsuario="+idUsuario_yo;
+            st.executeUpdate(SQL);            
+            nombreContrincante="";            
            // SQL="SELECT * FROM usuarios WHERE buscaPartida=1";
             //rs=st.executeQuery(SQL);
             res.setContentType("text/html");

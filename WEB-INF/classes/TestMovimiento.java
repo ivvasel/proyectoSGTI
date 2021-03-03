@@ -19,6 +19,7 @@ public class TestMovimiento extends HttpServlet{
         String nick;
         HttpSession sesion;
         int idUsuario_yo;
+        String idPartida; //Lo cojo como int
 
         try{
             for(int i=0;i<tablero.length;i++){
@@ -27,8 +28,10 @@ public class TestMovimiento extends HttpServlet{
                     tablero_actualizado[i][j]="";
                 }
             }
+            idPartida=req.getParameter("partida_continua");
             sesion=(HttpSession) req.getSession(true);
             nick=(String) sesion.getAttribute("nick");
+            sesion.setAttribute("idPartida",idPartida); //Guardo idPartida en variable de sesion para el siguiente servlet
             idUsuario_yo=(int) sesion.getAttribute("idUsuario");
             
             Class.forName("com.mysql.jdbc.Driver");
@@ -38,7 +41,7 @@ public class TestMovimiento extends HttpServlet{
             //rs_nick.next();
             //idUsuario_yo=rs_nick.getInt(1);
             SQL="SELECT movimientos.Casilla FROM movimientos INNER JOIN (partidas INNER JOIN usuarios ON partidas.IdJugador1=usuarios.IdUsuario)"+
-            "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida=1 AND movimientos.IdUsuario="+idUsuario_yo;
+            "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida="+idPartida+" AND movimientos.IdUsuario="+idUsuario_yo;//MIS FICHAS
             st=con.createStatement();
             rs=st.executeQuery(SQL);
             //Tengo donde están MIS FICHAS
@@ -50,7 +53,7 @@ public class TestMovimiento extends HttpServlet{
             }
 
             SQL2="SELECT movimientos.Casilla FROM movimientos INNER JOIN (partidas INNER JOIN usuarios ON partidas.IdJugador2=usuarios.IdUsuario)"+
-            "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida=1 AND movimientos.IdUsuario=63";
+            "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida="+idPartida+" AND movimientos.IdUsuario<>"+idUsuario_yo;
             st2=con.createStatement();
             rs2=st2.executeQuery(SQL2);
             

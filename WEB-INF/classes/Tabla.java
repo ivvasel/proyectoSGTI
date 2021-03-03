@@ -68,7 +68,7 @@ public class Tabla extends HttpServlet{
             out.println("</table>"); //FIN Primera fila de botones
             out.println("</form>");
             
-            out.println("<h1> TURNO DEL OPONENTE </h1>");
+            //out.println("<h1> TURNO DEL OPONENTE </h1>");
             //Tablero para fichas
             out.println("<table width=" +"\"530px\"" +"height=" +"\"530px\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
                 +"cellpadding=" +"\"2\"" +">");   
