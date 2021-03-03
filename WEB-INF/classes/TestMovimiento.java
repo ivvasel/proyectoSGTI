@@ -138,6 +138,19 @@ public class TestMovimiento extends HttpServlet{
             }
             sesion.setAttribute("tablero",tablero); //Envio matriz de ints           
             out.println("</table");
+            
+            //CAJA DE LOS PUNTOS
+            /*out.println("<table border=\"3\">");
+            out.println("<tr><td>TUS PUNTOS</td></tr>");
+            out.println("<tr><td>"+100+"</td></tr>");
+            out.println("</table>");
+            
+            out.println("<table>");
+            out.println("<tr><td>PUNTOS DEL CONTRINCANTE</td></tr>");
+            out.println("<tr><td>"+100+"</td></tr>");
+            out.println("</table>");*/
+            
+            
             out.println("</body></html>");
             rs.close();
             rs2.close();
