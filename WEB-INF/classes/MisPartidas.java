@@ -7,9 +7,9 @@ import javax.servlet.http.*;
 public class MisPartidas extends HttpServlet{
     public void doGet (HttpServletRequest req, HttpServletResponse res){
         Connection con;
-        ResultSet rs,rs2,rs3;
+        ResultSet rs,rs2,rs3,rs_aux;
         Statement st,st2,st3;
-        String SQL,SQL2,SQL3;
+        String SQL,SQL2,SQL3,SQL_aux;
         PrintWriter out;
         HttpSession sesion;
         int idUsuario;
@@ -20,16 +20,19 @@ public class MisPartidas extends HttpServlet{
         try{
             sesion=(HttpSession) req.getSession(true);
             idUsuario=(int)sesion.getAttribute("idUsuario");
-            //nick_mio=(String)sesion.getAttribute("nick");
-            Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
-            SQL="SELECT IdPartida FROM partidas WHERE IdJugador="+idUsuario+"AND Turno=1"; //Con esta consulta obtengo el IdPartida de las que me toca
-            st=con.createStatement();
-            rs=st.executeQuery(SQL);
             res.setContentType("text/html");
             out=res.getWriter();
             out.println("<html>");
             out.println("<body>");
+            out.println(idUsuario);
+            //nick_mio=(String)sesion.getAttribute("nick");
+            Class.forName("com.mysql.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
+            SQL="SELECT IdPartida FROM detallespartida WHERE Activa=1 AND IdJugador="+idUsuario;
+            
+            st=con.createStatement();
+            rs=st.executeQuery(SQL);
+            
             out.println("<h1>PARTIDAS DISPONIBLES</h1>");
             out.println("<form action=\"TestMovimiento\">");
             out.println("<select name=\"continuar\">");
@@ -46,6 +49,7 @@ public class MisPartidas extends HttpServlet{
                 out.println("<option value=\""+idPartida+"\">"+rs2.getString(1)+"VS "+rs3.getString(1)+"</option>");
             }
             out.println("</select>");
+            out.println("<input type=\"submit\" value=\"SEGUIR PARTIDA\">");
             out.println("</form>");
             out.println("</body>");
             out.println("</html>");

@@ -25,6 +25,10 @@ public class TestMovimiento extends HttpServlet{
             sesion2=(HttpSession)req.getSession(true);
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
+            res.setContentType("text/html");
+            out=res.getWriter();
+            out.println("<html>");
+            out.println("<head>");
             
             //out.println("<html>");
             //out.println("<head>");
@@ -46,11 +50,13 @@ public class TestMovimiento extends HttpServlet{
             nick=(String) sesion.getAttribute("nick");
             sesion.setAttribute("idPartida",idPartida); //Guardo idPartida en variable de sesion para el siguiente servlet
             
+            out.println("OK var");
             SQL_aux="SELECT * FROM usuarios WHERE Nick='"+nick+"'";
             st_aux=con.createStatement();
             rs_aux=st_aux.executeQuery(SQL_aux);
             rs_aux.next();
             idUsuario_yo=rs_aux.getInt(1);
+            out.println(idUsuario_yo);
             
             
             
@@ -58,23 +64,30 @@ public class TestMovimiento extends HttpServlet{
             //rs_nick=st_nick.executeQuery(SQL_consulta_nick);
             //rs_nick.next();
             //idUsuario_yo=rs_nick.getInt(1);
+            
             SQL="SELECT movimientos.Casilla FROM movimientos INNER JOIN (partidas INNER JOIN usuarios ON partidas.IdJugador1=usuarios.IdUsuario)"+
             "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida="+idPartida+" AND movimientos.IdUsuario="+idUsuario_yo;//MIS FICHAS
             st=con.createStatement();
             rs=st.executeQuery(SQL);
+            out.println(rs.next());
+            
             //Tengo donde est�n MIS FICHAS
             while(rs.next()){
+                out.println("BUCLE");
                 casilla=rs.getString("Casilla");
                 fila=casilla.substring(0,1);  
                 columna=casilla.substring(1);
                 tablero[Integer.parseInt(fila)][Integer.parseInt(columna)]=1;
             }
-
+            
+            
             SQL2="SELECT movimientos.Casilla FROM movimientos INNER JOIN (partidas INNER JOIN usuarios ON partidas.IdJugador2=usuarios.IdUsuario)"+
             "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida="+idPartida+" AND movimientos.IdUsuario<>"+idUsuario_yo;
             st2=con.createStatement();
             rs2=st2.executeQuery(SQL2);
             
+            out.println(rs2.next());
+            //FICHAS RIVAL
             while(rs2.next()){
                 casilla=rs.getString("Casilla");
                 fila=casilla.substring(0,1);

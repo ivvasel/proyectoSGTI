@@ -6,14 +6,15 @@ import javax.servlet.http.*;
 public class PrePartidaIniciada extends HttpServlet{
     public void doGet (HttpServletRequest req, HttpServletResponse res){
         Connection con;
-        Statement st,st_aux;
+        Statement st,st_aux,st_actualiza,st_actualiza2;
         ResultSet rs,rs_aux;
-        String SQL,SQL_aux;
+        String SQL,SQL_aux,SQL_actualiza,SQL_actualiza2;
         PrintWriter out;
         HttpSession sesion;
         String nick;
         int idUsuario;
         int idPartida;
+        int idRival;
         
         try{
             sesion=(HttpSession)req.getSession();
@@ -37,12 +38,19 @@ public class PrePartidaIniciada extends HttpServlet{
             out.println(idUsuario);   
             rs=st.executeQuery(SQL);
             rs.next();
-            idPartida=rs.getInt(1);
-            
+            idPartida=rs.getInt(1);  
+            idRival=rs.getInt(3);//Cojo id Jugador2
             rs.close();
             st.close();
-                 
-            out.println(idPartida);
+            
+            SQL_actualiza="INSERT INTO detallespartida (IdPartida,IdJugador,Turno,Activa) VALUES ("+idPartida+","+idUsuario+",1,1)";
+            st_actualiza=con.createStatement();
+            st_actualiza.executeUpdate(SQL_actualiza);            
+            
+            SQL_actualiza2="INSERT INTO detallespartida (IdPartida,IdJugador,Turno,Activa) VALUES ("+idPartida+","+idRival+",0,1)";
+            st_actualiza2=con.createStatement();
+            st_actualiza2.executeUpdate(SQL_actualiza2);
+            
             
             out.println("<h1> COMIENZA LA PARTIDA...</h1>");
             out.println("<form action=\"TestMovimiento\">");

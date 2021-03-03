@@ -8,9 +8,9 @@ import javax.servlet.http.*;
 public class Tabla extends HttpServlet{
     public void doPost (HttpServletRequest req, HttpServletResponse res){
         Connection con;
-        Statement st,st_aux;
+        Statement st,st_aux,st_Actualiza_turno,st_Actualiza_turno2;
         ResultSet rs,rs_aux;
-        String SQL,SQL_aux;
+        String SQL,SQL_aux,SQL_Actualiza_turno,SQL_Actualiza_turno2;
         PrintWriter out;
         HttpSession sesion;
         int tablero[][]=new int [6][6];
@@ -43,18 +43,12 @@ public class Tabla extends HttpServlet{
             rs_aux.next();
             idUsuario=rs_aux.getInt(1);
             st=con.createStatement();
-            res.setContentType("text/html");
-            out=res.getWriter();
-
-            out.println("<html>");
-            out.println("<head>");
             
 
             if(boton1!=null){ //Aprieto columna 1
                 columna=0;
                 while (columna_libre==true){
                     if(tablero[fila][columna]==0){
-                        out.println(tablero[fila][columna]);
                         tablero[fila][columna]=1;
                         SQL="INSERT INTO movimientos (IdPartida,IdUsuario,Casilla) VALUES ("+idPartida+","+idUsuario+","+fila+columna+")";
                         st.executeUpdate(SQL);
@@ -162,6 +156,20 @@ public class Tabla extends HttpServlet{
                 }
             }
            
+            SQL_Actualiza_turno="UPDATE detallespartida SET Turno=0 WHERE IdJugador="+idUsuario+" AND IdPartida="+idPartida;
+            st_Actualiza_turno=con.createStatement();
+            st_Actualiza_turno.executeUpdate(SQL_Actualiza_turno);
+            
+            SQL_Actualiza_turno2="UPDATE detallespartida SET Turno=1 WHERE IdJugador<>"+idUsuario+" AND IdPartida="+idPartida;
+            st_Actualiza_turno2=con.createStatement();
+            st_Actualiza_turno2.executeUpdate(SQL_Actualiza_turno2);
+            
+            res.setContentType("text/html");
+            out=res.getWriter();
+
+            out.println("<html>");
+            out.println("<head>");
+            
             out.println("<link rel="+"\"stylesheet\"" +"href="+"\"index.css\""+">");
             out.println("</head>");
             out.println("<body>");
@@ -189,7 +197,7 @@ public class Tabla extends HttpServlet{
             out.println("</table>");
 
             out.println("<nav>");
-            out.println("<a href=\"\">VOLVER A MIS PARTIDAS</a>");
+            out.println("<a href=\"menu\">MENU</a>");
             out.println("</nav>");
             out.println("</body>");
             out.println("</html>");
@@ -199,27 +207,4 @@ public class Tabla extends HttpServlet{
 
     }
 
-    public int [][] ponerFicha (int [][]tablero, int columna){
-        boolean libre=false;
-        int i=5;
-        while(!libre){
-            if((compruebaCasilla(tablero, i, columna))){
-                tablero[i][columna]=1;
-                libre=true;
-            }else{
-                i--;
-            }
-        }
-        return tablero;
-    }
-
-    public boolean compruebaCasilla (int [][] tablero, int fila, int columna){
-        boolean libre;
-        if (tablero[fila][columna]==0){
-            libre=true; //Si es true la casulla está libre
-        }else{
-            libre=false;
-        }
-        return libre;
-    }
 }

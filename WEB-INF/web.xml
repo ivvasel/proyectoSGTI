@@ -66,6 +66,11 @@
 	<servlet-class>PrePartidaIniciada</servlet-class>
 </servlet>
 
+<servlet>
+	<servlet-name>MisPartidas</servlet-name>
+	<servlet-class>MisPartidas</servlet-class>
+</servlet>
+
 
 <servlet-mapping>
 	<servlet-name>InicioSesionForm</servlet-name>
@@ -127,6 +132,11 @@
 <servlet-mapping>
 	<servlet-name>PrePartidaIniciada</servlet-name>
 	<url-pattern>/prepartida</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>MisPartidas</servlet-name>
+	<url-pattern>/listapartidas</url-pattern>
 </servlet-mapping>
 
 

@@ -52,7 +52,7 @@ public class CreaPartida extends HttpServlet{
             out.println("idPropio ="+idUsuarioActual+"<br>");
             out.println("OK<br>");
             //idUsuarioActual=(int) misesion.getAttribute("idUsuario");
-            SQL2="INSERT INTO partidas (IdJugador1,IdJugador2,Activa) VALUES ("+idUsuarioActual+","+idAmigo+",1)";
+            SQL2="INSERT INTO partidas (IdJugador1,IdJugador2) VALUES ("+idUsuarioActual+","+idAmigo+")";
             st3=con.createStatement();
             st3.executeUpdate(SQL2);
             

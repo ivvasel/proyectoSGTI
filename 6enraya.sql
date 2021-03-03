@@ -70,16 +70,18 @@ CREATE TABLE IF NOT EXISTS `detallespartida` (
   `IdJugador` int(11) NOT NULL,
   `Turno` bit(1) DEFAULT NULL,
   `Puntos` int(11) DEFAULT NULL,
+  `Activa` bit(1) NOT NULL,
   PRIMARY KEY (`IdPartida`,`IdJugador`),
   KEY `FK_detallespartida_usuarios` (`IdJugador`),
   CONSTRAINT `FK_detallespartida_partidas` FOREIGN KEY (`IdPartida`) REFERENCES `partidas` (`IdPartida`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_detallespartida_usuarios` FOREIGN KEY (`IdJugador`) REFERENCES `usuarios` (`IdUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Detalles de un jugador específico dentro de la partida';
 
--- Volcando datos para la tabla 6enraya.detallespartida: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla 6enraya.detallespartida: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `detallespartida` DISABLE KEYS */;
-INSERT INTO `detallespartida` (`IdPartida`, `IdJugador`, `Turno`, `Puntos`) VALUES
-	(1, 63, b'1', 20);
+INSERT INTO `detallespartida` (`IdPartida`, `IdJugador`, `Turno`, `Puntos`, `Activa`) VALUES
+	(71, 60, b'0', NULL, b'1'),
+	(71, 63, b'1', NULL, b'1');
 /*!40000 ALTER TABLE `detallespartida` ENABLE KEYS */;
 
 -- Volcando estructura para tabla 6enraya.historicopartidas
@@ -110,8 +112,12 @@ CREATE TABLE IF NOT EXISTS `movimientos` (
   CONSTRAINT `FK_movimientos_usuarios` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla 6enraya.movimientos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla 6enraya.movimientos: ~13 rows (aproximadamente)
 /*!40000 ALTER TABLE `movimientos` DISABLE KEYS */;
+INSERT INTO `movimientos` (`IdPartida`, `IdUsuario`, `Casilla`) VALUES
+	(71, 63, '50'),
+	(71, 60, '51'),
+	(71, 60, '51');
 /*!40000 ALTER TABLE `movimientos` ENABLE KEYS */;
 
 -- Volcando estructura para tabla 6enraya.partidas
@@ -119,53 +125,87 @@ CREATE TABLE IF NOT EXISTS `partidas` (
   `IdPartida` int(11) NOT NULL AUTO_INCREMENT,
   `IdJugador1` int(11) DEFAULT NULL,
   `IdJugador2` int(11) DEFAULT NULL,
-  `Activa` int(11) DEFAULT NULL,
   PRIMARY KEY (`IdPartida`),
   KEY `FK_partidas_usuarios` (`IdJugador1`),
   KEY `FK_partidas_usuarios_2` (`IdJugador2`),
   CONSTRAINT `FK_partidas_usuarios` FOREIGN KEY (`IdJugador1`) REFERENCES `usuarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_partidas_usuarios_2` FOREIGN KEY (`IdJugador2`) REFERENCES `usuarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COMMENT='Datos básicos sobre partida';
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COMMENT='Datos básicos sobre partida';
 
--- Volcando datos para la tabla 6enraya.partidas: ~11 rows (aproximadamente)
+-- Volcando datos para la tabla 6enraya.partidas: ~64 rows (aproximadamente)
 /*!40000 ALTER TABLE `partidas` DISABLE KEYS */;
-INSERT INTO `partidas` (`IdPartida`, `IdJugador1`, `IdJugador2`, `Activa`) VALUES
-	(1, 63, 27, 1),
-	(2, 63, 27, 1),
-	(3, 63, 27, 0),
-	(4, 63, 27, 0),
-	(5, 63, 27, 0),
-	(6, 63, 27, 0),
-	(7, 63, 27, 0),
-	(8, 63, 60, 0),
-	(9, 63, 60, 0),
-	(10, 63, 3, 0),
-	(11, 63, 3, 1),
-	(12, 63, 2, 1),
-	(13, 63, 3, 1),
-	(14, 63, 3, 1),
-	(15, 63, 2, 1),
-	(16, 63, 2, 1),
-	(17, 63, 2, 1),
-	(18, 63, 2, 1),
-	(19, 63, 2, 1),
-	(20, 63, 2, 1),
-	(21, 63, 2, 1),
-	(22, 63, 2, 1),
-	(23, 63, 2, 1),
-	(24, 63, 2, 1),
-	(25, 63, 2, 1),
-	(26, 63, 2, 1),
-	(27, 63, 2, 1),
-	(28, 63, 2, 1),
-	(29, 63, 2, 1),
-	(30, 63, 2, 1),
-	(31, 63, 2, 1),
-	(32, 63, 2, 1),
-	(33, 63, 2, 1),
-	(34, 63, 2, 1),
-	(35, 63, 2, 1),
-	(36, 63, 2, 1);
+INSERT INTO `partidas` (`IdPartida`, `IdJugador1`, `IdJugador2`) VALUES
+	(1, 63, 27),
+	(2, 63, 27),
+	(3, 63, 27),
+	(4, 63, 27),
+	(5, 63, 27),
+	(6, 63, 27),
+	(7, 63, 27),
+	(8, 63, 60),
+	(9, 63, 60),
+	(10, 63, 3),
+	(11, 63, 3),
+	(12, 63, 2),
+	(13, 63, 3),
+	(14, 63, 3),
+	(15, 63, 2),
+	(16, 63, 2),
+	(17, 63, 2),
+	(18, 63, 2),
+	(19, 63, 2),
+	(20, 63, 2),
+	(21, 63, 2),
+	(22, 63, 2),
+	(23, 63, 2),
+	(24, 63, 2),
+	(25, 63, 2),
+	(26, 63, 2),
+	(27, 63, 2),
+	(28, 63, 2),
+	(29, 63, 2),
+	(30, 63, 2),
+	(31, 63, 2),
+	(32, 63, 2),
+	(33, 63, 2),
+	(34, 63, 2),
+	(35, 63, 2),
+	(36, 63, 2),
+	(37, 63, 2),
+	(38, 63, 2),
+	(39, 63, 2),
+	(40, 63, 2),
+	(41, 63, 2),
+	(42, 63, 2),
+	(43, 63, 2),
+	(44, 63, 2),
+	(45, 63, 2),
+	(46, 63, 2),
+	(47, 63, 2),
+	(48, 63, 2),
+	(49, 63, 2),
+	(50, 63, 2),
+	(51, 63, 2),
+	(52, 63, 2),
+	(53, 63, 2),
+	(54, 63, 2),
+	(55, 63, 2),
+	(56, 63, 2),
+	(57, 63, 2),
+	(58, 63, 2),
+	(59, 63, 2),
+	(60, 63, 2),
+	(61, 63, 2),
+	(62, 63, 2),
+	(63, 63, 2),
+	(64, 63, 2),
+	(65, 63, 2),
+	(66, 63, 2),
+	(67, 63, 2),
+	(68, 63, 2),
+	(69, 63, 2),
+	(70, 63, 60),
+	(71, 63, 60);
 /*!40000 ALTER TABLE `partidas` ENABLE KEYS */;
 
 -- Volcando estructura para tabla 6enraya.usuarios
