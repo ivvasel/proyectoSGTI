@@ -11,7 +11,7 @@ public class TestMovimiento extends HttpServlet{
         ResultSet rs,rs2,rs_nick;
         String SQL,SQL2,SQL_consulta_nick;
         PrintWriter out;
-        String tablero[][]=new String [6][6];
+        String tablero[][]=new String[6][6];
         String tablero_actualizado[][]=new String[6][6];
         String casilla;
         String fila;
@@ -22,14 +22,14 @@ public class TestMovimiento extends HttpServlet{
         String idPartida; //Lo cojo como int
 
         try{
-            for(int i=0;i<tablero.length;i++){
-                for(int j=0;i<tablero.length;j++){
+            for(int i=0;i<6;i++){
+                for(int j=0;i<6;j++){
                     tablero[i][j]="";
                     tablero_actualizado[i][j]="";
                 }
             }
             idPartida=req.getParameter("partida_continua");
-            sesion=(HttpSession) req.getSession(true);
+            sesion=(HttpSession) req.getSession();
             nick=(String) sesion.getAttribute("nick");
             sesion.setAttribute("idPartida",idPartida); //Guardo idPartida en variable de sesion para el siguiente servlet
             idUsuario_yo=(int) sesion.getAttribute("idUsuario");
@@ -45,27 +45,27 @@ public class TestMovimiento extends HttpServlet{
             st=con.createStatement();
             rs=st.executeQuery(SQL);
             //Tengo donde están MIS FICHAS
-            while(rs.next()){
+            /*while(rs.next()){
                 casilla=rs.getString("Casilla");
                 fila=casilla.substring(0,1);  
                 columna=casilla.substring(1);
                 tablero[Integer.parseInt(fila)][Integer.parseInt(columna)]="1";
-            }
+            }*/
 
             SQL2="SELECT movimientos.Casilla FROM movimientos INNER JOIN (partidas INNER JOIN usuarios ON partidas.IdJugador2=usuarios.IdUsuario)"+
             "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida="+idPartida+" AND movimientos.IdUsuario<>"+idUsuario_yo;
             st2=con.createStatement();
             rs2=st2.executeQuery(SQL2);
             
-            while(rs2.next()){
+            /*while(rs2.next()){
                 casilla=rs.getString("Casilla");
                 fila=casilla.substring(0,1);
                 columna=casilla.substring(1);
                 tablero[Integer.parseInt(fila)][Integer.parseInt(columna)]="2";
-            }
+            }*/
             
-            for(int i=0;i<tablero.length;i++){
-                for(int j=0;j<tablero.length;j++){
+            for(int i=0;i<6;i++){
+                for(int j=0;j<6;j++){
                     if(tablero[i][j].equals("1")){
                         tablero_actualizado[i][j]="<div class=\"ficharoja\"></div>";
                     }else if (tablero[i][j].equals("2")){
@@ -95,19 +95,16 @@ public class TestMovimiento extends HttpServlet{
             out.println("</tr>");
             out.println("</table>"); //FIN Primera fila de botones
             out.println("</form>");
-
             out.println("<table width=" +"\"530px\"" +"height=" +"\"530px\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
                 +"cellpadding=" +"\"2\"" +">");   
-
-            for (int i=0;i<tablero.length;i++){
+            for (int i=0;i<6;i++){
                 out.println("<tr class=\"filatablero\" align=" +"\"center\"" +">");
-                for (int j=0;j<tablero.length;j++){                
+                for (int j=0;j<6;j++){                
                     out.println("<td class=\"casillas\">"+tablero_actualizado[i][j]+"</td>");
                 }
                 out.println("</tr>");
             }
-            sesion.setAttribute("tablero",tablero);
-            
+            sesion.setAttribute("tablero",tablero);            
             out.println("</table");
             out.println("</body></html>");
             rs.close();

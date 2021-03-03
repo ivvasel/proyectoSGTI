@@ -31,8 +31,8 @@ public class MisPartidas extends HttpServlet{
             out.println("<html>");
             out.println("<body>");
             out.println("<h1>PARTIDAS DISPONIBLES</h1>");
-            out.println("<form action=\"\">");
-            out.println("<select name=\"partida_continua\">");
+            out.println("<form action=\"TestMovimiento\">");
+            out.println("<select name=\"continuar\">");
             while(rs.next()){
                 idPartida=rs.getInt(1);
                 SQL2="SELECT Nick FROM usuarios INNER JOIN partidas ON usuarios.IdUsuario=partidas.IdJugador1 WHERE IdPartida="+idPartida; //Obtengo nick jugador1

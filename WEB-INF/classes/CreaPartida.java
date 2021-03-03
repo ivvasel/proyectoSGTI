@@ -55,10 +55,7 @@ public class CreaPartida extends HttpServlet{
             SQL2="INSERT INTO partidas (IdJugador1,IdJugador2,Activa) VALUES ("+idUsuarioActual+","+idAmigo+",1)";
             st3=con.createStatement();
             st3.executeUpdate(SQL2);
-            SQL_actualiza="UPDATE usuarios SET buscaPartida=0 WHERE IdUsuario="+idUsuarioActual; //Pongo un 0 porque YA HE ENCONTRADO PARTIDA
-            st_actualiza=con.createStatement();
-            st_actualiza.executeUpdate(SQL_actualiza);
-
+            
             out.println("</BODY> </HTML>");
             rs.close();
             rs2.close();
@@ -66,9 +63,8 @@ public class CreaPartida extends HttpServlet{
             st3.close();
             st2.close();
             con.close();
-            // out.close();
-
-            res.sendRedirect("../tabla"); 
+            //out.close();
+            res.sendRedirect("../prepartida"); 
         }catch (Exception e){
             System.err.println(e);
         }

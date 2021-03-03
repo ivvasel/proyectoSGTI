@@ -10,12 +10,17 @@ public class PartidaAleatoria extends HttpServlet{
         ResultSet rs;
         PrintWriter out;
         String SQL;
-        
+        HttpSession sesion;
+        int idUsuario_yo;
+
         try{
+            sesion=(HttpSession)req.getSession();
+            idUsuario_yo=(int)sesion.getAttribute("idUsuario");
+
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
             st=con.createStatement();
-            SQL="SELECT * FROM usuarios WHERE buscaPartida=1";
+            SQL="SELECT * FROM usuarios WHERE IdUsuario<>"+idUsuario_yo;
             rs=st.executeQuery(SQL);
             res.setContentType("text/html");
             out=res.getWriter();
@@ -24,8 +29,6 @@ public class PartidaAleatoria extends HttpServlet{
             out.println("<link rel=\"stylesheet\" href=\"menu.css\">");            
             out.println("</head>");
             out.println("<body>");
-            
-            
             out.println("<h1>¿Contra quién quieres jugar?</h1>");
             out.println("<form action=\"crea\">");
             out.println("<select name=\"contrincante\">");
@@ -41,6 +44,7 @@ public class PartidaAleatoria extends HttpServlet{
             st.close();
             con.close();
             out.close();
+
         }catch (Exception e){
             System.err.println(e);
         }
