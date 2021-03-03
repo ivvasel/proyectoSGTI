@@ -11,11 +11,18 @@ public class NuevaPartida extends HttpServlet{
         String SQL,SQL2;
         PrintWriter out;
         String nombreContrincante;
-        
+        HttpSession sesion;
+        String idUsuario_yo;
         
         try{
-            nombreContrincante="";
-            
+            //sesion=(HttpSession) req.getSession();
+            //idUsuario_yo=(String)sesion.getAttribute("idUsuario");
+            Class.forName("com.mysql.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
+            st=con.createStatement();
+            //SQL="UPDATE usuarios SET buscaPartida=1 WHERE IdUsuario="+idUsuario_yo;
+            //st.executeUpdate(SQL);            
+            nombreContrincante="";            
            // SQL="SELECT * FROM usuarios WHERE buscaPartida=1";
             //rs=st.executeQuery(SQL);
             res.setContentType("text/html");
@@ -27,7 +34,7 @@ public class NuevaPartida extends HttpServlet{
             out.println("<body>");
             out.println("<h1>¿Con quién desea iniciar una partida?</h1>");
             out.println("<nav>");
-            out.println("<a href=\"nueva/aleatoria\" class=\"nav-enlace\">CONTRINCANTES DISPONIBLES </a>");
+            out.println("<a href=\"nueva/aleatoria\" class=\"nav-enlace\">VER TODOS LOS USUARIOS </a>");
             out.println("<a href=\"amigos\" class=\"nav-enlace\">JUGAR CON UN AMIGO </a>");
             out.println("</nav>");
             out.println("</body>");
