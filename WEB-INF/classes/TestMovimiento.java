@@ -69,9 +69,8 @@ public class TestMovimiento extends HttpServlet{
             "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida="+idPartida+" AND movimientos.IdUsuario="+idUsuario_yo;//MIS FICHAS
             st=con.createStatement();
             rs=st.executeQuery(SQL);
-            out.println(rs.next());
             
-            //Tengo donde estï¿½n MIS FICHAS
+            //Tengo donde están MIS FICHAS
             while(rs.next()){
                 out.println("BUCLE");
                 casilla=rs.getString("Casilla");
@@ -85,11 +84,11 @@ public class TestMovimiento extends HttpServlet{
             "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida="+idPartida+" AND movimientos.IdUsuario<>"+idUsuario_yo;
             st2=con.createStatement();
             rs2=st2.executeQuery(SQL2);
-            
-            out.println(rs2.next());
+
             //FICHAS RIVAL
             while(rs2.next()){
-                casilla=rs.getString("Casilla");
+                out.println("BUCLE rival");
+                casilla=rs2.getString("Casilla");
                 fila=casilla.substring(0,1);
                 columna=casilla.substring(1);
                 tablero[Integer.parseInt(fila)][Integer.parseInt(columna)]=2;
@@ -141,7 +140,9 @@ public class TestMovimiento extends HttpServlet{
             out.println("</table");
             out.println("</body></html>");
             rs.close();
+            rs2.close();
             st.close();
+            st2.close();
             con.close();
             out.close();
         }catch (Exception e){
