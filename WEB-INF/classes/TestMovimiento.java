@@ -7,18 +7,18 @@ import javax.servlet.http.*;
 public class TestMovimiento extends HttpServlet{
     public void doGet (HttpServletRequest req, HttpServletResponse res){
         Connection con;
-        Statement st;
-        ResultSet rs;
-        String SQL;
+        Statement st,st2,st_nick;
+        ResultSet rs,rs2,rs_nick;
+        String SQL,SQL2,SQL_consulta_nick;
         PrintWriter out;
         String tablero[][]=new String [6][6];
         String tablero_actualizado[][]=new String[6][6];
         String casilla;
-        String fila_string;
-        String columna_string;
-        int fila;
-        int columna;
+        String fila;
+        String columna;
+        String nick;
         HttpSession sesion;
+        int idUsuario_yo;
 
         try{
             for(int i=0;i<tablero.length;i++){
@@ -28,25 +28,47 @@ public class TestMovimiento extends HttpServlet{
                 }
             }
             sesion=(HttpSession) req.getSession(true);
+            nick=(String) sesion.getAttribute("nick");
+            idUsuario_yo=(int) sesion.getAttribute("idUsuario");
+            
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
-            SQL="SELECT casillas.Numero FROM casillas INNER JOIN movimientos ON casillas.IdCasilla="+
-            "movimientos.idcasilla WHERE IdPartida=1";
+            //st_nick=con.createStatement();
+            //rs_nick=st_nick.executeQuery(SQL_consulta_nick);
+            //rs_nick.next();
+            //idUsuario_yo=rs_nick.getInt(1);
+            SQL="SELECT movimientos.Casilla FROM movimientos INNER JOIN (partidas INNER JOIN usuarios ON partidas.IdJugador1=usuarios.IdUsuario)"+
+            "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida=1 AND movimientos.IdUsuario="+idUsuario_yo;
             st=con.createStatement();
             rs=st.executeQuery(SQL);
+            //Tengo donde están MIS FICHAS
             while(rs.next()){
-                casilla=rs.getString("Numero");
-                fila_string=casilla.substring(0,1);  
-                columna_string=casilla.substring(1);
-                fila=Integer.parseInt(fila_string);
-                columna=Integer.parseInt(columna_string);//Convertimos indices fila y columna de String a int
-                tablero[fila][columna]="1";
+                casilla=rs.getString("Casilla");
+                fila=casilla.substring(0,1);  
+                columna=casilla.substring(1);
+                tablero[Integer.parseInt(fila)][Integer.parseInt(columna)]="1";
             }
 
+            SQL2="SELECT movimientos.Casilla FROM movimientos INNER JOIN (partidas INNER JOIN usuarios ON partidas.IdJugador2=usuarios.IdUsuario)"+
+            "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida=1 AND movimientos.IdUsuario=63";
+            st2=con.createStatement();
+            rs2=st2.executeQuery(SQL2);
+            
+            while(rs2.next()){
+                casilla=rs.getString("Casilla");
+                fila=casilla.substring(0,1);
+                columna=casilla.substring(1);
+                tablero[Integer.parseInt(fila)][Integer.parseInt(columna)]="2";
+            }
+            
             for(int i=0;i<tablero.length;i++){
                 for(int j=0;j<tablero.length;j++){
                     if(tablero[i][j].equals("1")){
                         tablero_actualizado[i][j]="<div class=\"ficharoja\"></div>";
+                    }else if (tablero[i][j].equals("2")){
+                        tablero_actualizado[i][j]="<div class=\"fichaazul\"></div>";
+                    }else{
+                        tablero_actualizado[i][j]="";
                     }
                 }
             }
@@ -81,7 +103,7 @@ public class TestMovimiento extends HttpServlet{
                 }
                 out.println("</tr>");
             }
-            sesion.setAttribute("tablero",tablero_actualizado);
+            sesion.setAttribute("tablero",tablero);
             
             out.println("</table");
             out.println("</body></html>");
