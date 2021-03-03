@@ -90,8 +90,8 @@
 
 
 <servlet-mapping>
-<servlet-name>Tabla</servlet-name>
-<url-pattern>/tabla</url-pattern>
+	<servlet-name>Tabla</servlet-name>
+	<url-pattern>/tabla</url-pattern>
 </servlet-mapping>
 
 <servlet-mapping>
@@ -127,6 +127,9 @@
 <servlet-mapping>
 	<servlet-name>ServletRegistro</servlet-name>
 	<url-pattern>/registro</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>	
 	<servlet-name>CreaPartida</servlet-name>
 	<url-pattern>/nueva/crea</url-pattern>
 </servlet-mapping>
@@ -145,6 +148,7 @@
 	<servlet-name>MisPartidas</servlet-name>
 	<url-pattern>/listapartidas</url-pattern>
 </servlet-mapping>
+
 
 
 
