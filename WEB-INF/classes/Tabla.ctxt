@@ -1,5 +1,9 @@
 #BlueJ class context
 comment0.target=Tabla
 comment1.params=req\ res
-comment1.target=void\ doGet(javax.servlet.http.HttpServletRequest,\ javax.servlet.http.HttpServletResponse)
-numComments=2
+comment1.target=void\ doPost(javax.servlet.http.HttpServletRequest,\ javax.servlet.http.HttpServletResponse)
+comment2.params=tablero\ columna
+comment2.target=int[][]\ ponerFicha(int[][],\ int)
+comment3.params=tablero\ fila\ columna
+comment3.target=boolean\ compruebaCasilla(int[][],\ int,\ int)
+numComments=4

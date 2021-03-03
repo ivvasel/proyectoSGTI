@@ -17,11 +17,12 @@ public class TestMovimiento extends HttpServlet{
         String fila;
         String columna;
         String nick;
-        HttpSession sesion;
+        HttpSession sesion,sesion2;
         int idUsuario_yo;
-        String idPartida; //Lo cojo como int
+        String idPartida; 
 
         try{
+            sesion2=(HttpSession)req.getSession(true);
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
             
@@ -39,7 +40,9 @@ public class TestMovimiento extends HttpServlet{
             }
             
             idPartida=req.getParameter("continuar");
+            
             sesion=(HttpSession) req.getSession();
+            sesion.setAttribute("idPartida",idPartida);
             nick=(String) sesion.getAttribute("nick");
             sesion.setAttribute("idPartida",idPartida); //Guardo idPartida en variable de sesion para el siguiente servlet
             
@@ -99,7 +102,7 @@ public class TestMovimiento extends HttpServlet{
             out.println("<link rel="+"\"stylesheet\"" +"href="+"\"index.css\""+">");
             out.println("</head>");
             out.println("<body>");
-            out.println("<form action="+"\"tabla\"" +">");
+            out.println("<form action="+"\"tabla\" method=\"post\"" +">");
             out.println("<table width=" +"\"auto\"" +"height=" +"\"auto\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
                 +"cellpadding=" +"\"2\"" +">");
             out.println("<tr align=" +"\"center\"" +">");
@@ -121,7 +124,7 @@ public class TestMovimiento extends HttpServlet{
                 }
                 out.println("</tr>");
             }
-            sesion.setAttribute("tablero",tablero);            
+            sesion.setAttribute("tablero",tablero); //Envio matriz de ints           
             out.println("</table");
             out.println("</body></html>");
             rs.close();
