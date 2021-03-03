@@ -7,11 +7,11 @@ import javax.servlet.http.*;
 public class TestMovimiento extends HttpServlet{
     public void doGet (HttpServletRequest req, HttpServletResponse res){
         Connection con;
-        Statement st,st2,st_nick;
-        ResultSet rs,rs2,rs_nick;
-        String SQL,SQL2,SQL_consulta_nick;
+        Statement st,st2,st_aux;
+        ResultSet rs,rs2,rs_aux;
+        String SQL,SQL2,SQL_aux;
         PrintWriter out;
-        String tablero[][]=new String[6][6];
+        int tablero[][]=new int[6][6];
         String tablero_actualizado[][]=new String[6][6];
         String casilla;
         String fila;
@@ -22,20 +22,35 @@ public class TestMovimiento extends HttpServlet{
         String idPartida; //Lo cojo como int
 
         try{
+            Class.forName("com.mysql.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
+            
+            //out.println("<html>");
+            //out.println("<head>");
+            //out.println("OKKKKK");
+            
             for(int i=0;i<6;i++){
-                for(int j=0;i<6;j++){
-                    tablero[i][j]="";
-                    tablero_actualizado[i][j]="";
+                
+                for(int j=0;j<6;j++){
+                    tablero[i][j]=0;
+                    
+                    tablero_actualizado[i][j]="<div class=\"fichavacia\"></div>";
                 }
             }
-            idPartida=req.getParameter("partida_continua");
+            
+            idPartida=req.getParameter("continuar");
             sesion=(HttpSession) req.getSession();
             nick=(String) sesion.getAttribute("nick");
             sesion.setAttribute("idPartida",idPartida); //Guardo idPartida en variable de sesion para el siguiente servlet
-            idUsuario_yo=(int) sesion.getAttribute("idUsuario");
             
-            Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
+            SQL_aux="SELECT * FROM usuarios WHERE Nick='"+nick+"'";
+            st_aux=con.createStatement();
+            rs_aux=st_aux.executeQuery(SQL_aux);
+            rs_aux.next();
+            idUsuario_yo=rs_aux.getInt(1);
+            
+            
+            
             //st_nick=con.createStatement();
             //rs_nick=st_nick.executeQuery(SQL_consulta_nick);
             //rs_nick.next();
@@ -44,34 +59,34 @@ public class TestMovimiento extends HttpServlet{
             "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida="+idPartida+" AND movimientos.IdUsuario="+idUsuario_yo;//MIS FICHAS
             st=con.createStatement();
             rs=st.executeQuery(SQL);
-            //Tengo donde están MIS FICHAS
-            /*while(rs.next()){
+            //Tengo donde estï¿½n MIS FICHAS
+            while(rs.next()){
                 casilla=rs.getString("Casilla");
                 fila=casilla.substring(0,1);  
                 columna=casilla.substring(1);
-                tablero[Integer.parseInt(fila)][Integer.parseInt(columna)]="1";
-            }*/
+                tablero[Integer.parseInt(fila)][Integer.parseInt(columna)]=1;
+            }
 
             SQL2="SELECT movimientos.Casilla FROM movimientos INNER JOIN (partidas INNER JOIN usuarios ON partidas.IdJugador2=usuarios.IdUsuario)"+
             "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida="+idPartida+" AND movimientos.IdUsuario<>"+idUsuario_yo;
             st2=con.createStatement();
             rs2=st2.executeQuery(SQL2);
             
-            /*while(rs2.next()){
+            while(rs2.next()){
                 casilla=rs.getString("Casilla");
                 fila=casilla.substring(0,1);
                 columna=casilla.substring(1);
-                tablero[Integer.parseInt(fila)][Integer.parseInt(columna)]="2";
-            }*/
+                tablero[Integer.parseInt(fila)][Integer.parseInt(columna)]=2;
+            }
             
             for(int i=0;i<6;i++){
                 for(int j=0;j<6;j++){
-                    if(tablero[i][j].equals("1")){
+                    if(tablero[i][j]==1){
                         tablero_actualizado[i][j]="<div class=\"ficharoja\"></div>";
-                    }else if (tablero[i][j].equals("2")){
+                    }else if (tablero[i][j]==2){
                         tablero_actualizado[i][j]="<div class=\"fichaazul\"></div>";
                     }else{
-                        tablero_actualizado[i][j]="";
+                        tablero_actualizado[i][j]=tablero_actualizado[i][j];
                     }
                 }
             }
@@ -95,12 +110,14 @@ public class TestMovimiento extends HttpServlet{
             out.println("</tr>");
             out.println("</table>"); //FIN Primera fila de botones
             out.println("</form>");
-            out.println("<table width=" +"\"530px\"" +"height=" +"\"530px\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
+            
+            
+            out.println("<table width=" +"\"auto\"" +"height=" +"\"auto\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
                 +"cellpadding=" +"\"2\"" +">");   
             for (int i=0;i<6;i++){
                 out.println("<tr class=\"filatablero\" align=" +"\"center\"" +">");
                 for (int j=0;j<6;j++){                
-                    out.println("<td class=\"casillas\">"+tablero_actualizado[i][j]+"</td>");
+                    out.println("<td>"+tablero_actualizado[i][j]+"</td>");
                 }
                 out.println("</tr>");
             }

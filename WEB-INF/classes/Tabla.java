@@ -70,7 +70,7 @@ public class Tabla extends HttpServlet{
             
             //out.println("<h1> TURNO DEL OPONENTE </h1>");
             //Tablero para fichas
-            out.println("<table width=" +"\"530px\"" +"height=" +"\"530px\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
+            out.println("<table width=" +"\"auto\"" +"height=" +"\"auto\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
                 +"cellpadding=" +"\"2\"" +">");   
 
             for (int i=1;i<7;i++){
