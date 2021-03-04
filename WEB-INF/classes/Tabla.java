@@ -25,12 +25,12 @@ public class Tabla extends HttpServlet{
         try{
             fila=5;
             columna_libre=true;
-            boton1=req.getParameter("BO1");
-            boton2=req.getParameter("BO2");
-            boton3=req.getParameter("BO3");
-            boton4=req.getParameter("BO4");
-            boton5=req.getParameter("BO5");
-            boton6=req.getParameter("BO6");
+            boton1=req.getParameter("BO0");
+            boton2=req.getParameter("BO1");
+            boton3=req.getParameter("BO2");
+            boton4=req.getParameter("BO3");
+            boton5=req.getParameter("BO4");
+            boton6=req.getParameter("BO5");
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
             sesion=(HttpSession) req.getSession();
