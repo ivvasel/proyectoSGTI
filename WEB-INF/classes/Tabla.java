@@ -58,14 +58,16 @@ public class Tabla extends HttpServlet{
             idUsuario=rs_aux.getInt(1);
             st=con.createStatement();
 
-            if(boton1!=null){ //Aprieto columna 1
+            if(boton1!=null){ //Aprieto columna 0
                 columna=0;
                 while (columna_libre==true){
                     if(tablero[fila][columna]==0){
                         tablero[fila][columna]=1;
-                        SQL="INSERT INTO movimientos (IdPartida,IdUsuario,Casilla) VALUES ("+idPartida+","+idUsuario+","+fila+columna+")";
+                        SQL="INSERT INTO movimientos (IdPartida,IdUsuario,Casilla) VALUES ("+idPartida+","+idUsuario+",'"+fila+columna+"')";
                         st.executeUpdate(SQL);
                         columna_libre=false;
+                    }else{
+                        fila--;
                     }
                 }
             }else if(boton2!=null){
@@ -73,7 +75,7 @@ public class Tabla extends HttpServlet{
                 while (columna_libre==true){
                     if(tablero[fila][columna]==0){
                         tablero[fila][columna]=1;
-                        SQL="INSERT INTO movimientos (IdPartida,IdUsuario,Casilla) VALUES ("+idPartida+","+idUsuario+","+fila+columna+")";
+                        SQL="INSERT INTO movimientos (IdPartida,IdUsuario,Casilla) VALUES ("+idPartida+","+idUsuario+",'"+fila+columna+"')";
                         st.executeUpdate(SQL);
                         columna_libre=false;
                     }else{
@@ -88,7 +90,7 @@ public class Tabla extends HttpServlet{
                 while (columna_libre==true){
                     if(tablero[fila][columna]==0){
                         tablero[fila][columna]=1;
-                        SQL="INSERT INTO movimientos (IdPartida,IdUsuario,Casilla) VALUES ("+idPartida+","+idUsuario+","+fila+columna+")";
+                        SQL="INSERT INTO movimientos (IdPartida,IdUsuario,Casilla) VALUES ("+idPartida+","+idUsuario+",'"+fila+columna+"')";
                         st.executeUpdate(SQL);
                         columna_libre=false;
                     }else{
@@ -103,7 +105,7 @@ public class Tabla extends HttpServlet{
                 while (columna_libre==true){
                     if(tablero[fila][columna]==0){
                         tablero[fila][columna]=1;
-                        SQL="INSERT INTO movimientos (IdPartida,IdUsuario,Casilla) VALUES ("+idPartida+","+idUsuario+","+fila+columna+")";
+                        SQL="INSERT INTO movimientos (IdPartida,IdUsuario,Casilla) VALUES ("+idPartida+","+idUsuario+",'"+fila+columna+"')";
                         st.executeUpdate(SQL);
                         columna_libre=false;
                     }else{
@@ -118,7 +120,7 @@ public class Tabla extends HttpServlet{
                 while (columna_libre==true){
                     if(tablero[fila][columna]==0){
                         tablero[fila][columna]=1;
-                        SQL="INSERT INTO movimientos (IdPartida,IdUsuario,Casilla) VALUES ("+idPartida+","+idUsuario+","+fila+columna+")";
+                        SQL="INSERT INTO movimientos (IdPartida,IdUsuario,Casilla) VALUES ("+idPartida+","+idUsuario+",'"+fila+columna+"')";
                         st.executeUpdate(SQL);
                         columna_libre=false;
                     }else{
@@ -134,7 +136,7 @@ public class Tabla extends HttpServlet{
                     if(tablero[fila][columna]==0){
                         out.println("COLUMNA");
                         tablero[fila][columna]=1;
-                        SQL="INSERT INTO movimientos (IdPartida,IdUsuario,Casilla) VALUES ("+idPartida+","+idUsuario+","+fila+columna+")";
+                        SQL="INSERT INTO movimientos (IdPartida,IdUsuario,Casilla) VALUES ("+idPartida+","+idUsuario+",'"+fila+columna+"')";
                         st.executeUpdate(SQL);
                         columna_libre=false;
                     }else{
@@ -171,12 +173,13 @@ public class Tabla extends HttpServlet{
             }
 
             if(terminada==true){
-                puntos1=Puntos(tablero);
+                puntos1=Puntos(tablero,1);
+                puntos2=Puntos(tablero,2);
                 SQL_actualiza_activa="UPDATE detallespartida SET Activa=0, Puntos="+puntos1+" WHERE IdJugador="+idUsuario+" AND IdPartida="+idPartida;
                 st_actualiza_activa=con.createStatement();
                 st_actualiza_activa.executeUpdate(SQL_actualiza_activa);
                 
-                SQL_actualiza_activa2="UPDATE detallespartida SET Activa=0 WHERE IdJugador<>"+idUsuario+" AND IdPartida="+idPartida;
+                SQL_actualiza_activa2="UPDATE detallespartida SET Activa=0, Puntos="+puntos2+" WHERE IdJugador<>"+idUsuario+" AND IdPartida="+idPartida;
                 st_actualiza_activa2=con.createStatement();
                 st_actualiza_activa2.executeUpdate(SQL_actualiza_activa2);
                 
@@ -230,7 +233,7 @@ public class Tabla extends HttpServlet{
                 out.println("</table>");
 
                 out.println("<nav>");
-                out.println("<a href=\"menu\">MENU</a>");
+                out.println("<a href=\"listapartidas\">MENU</a>");
                 out.println("</nav>");
                 out.println("</body>");
                 out.println("</html>");
@@ -242,58 +245,65 @@ public class Tabla extends HttpServlet{
     }
 
     //Método para calcular los puntos al final de la pártida
-    public int Puntos(int [][] tablero) {
+    public int Puntos(int [][] tablero, int jugador) {
         //int tablero[][]=new int [6][6];
         int contador1=0;
-        int contador2=0;
         int Puntos1 = 0;
-        int Puntos2=0;
         //FOR para jugador 1
             //Comprueba los puntos por filas
         for(int i=0;i<6;i++){
+            Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso última no cogida bien
+            contador1=0;            
             for(int j=0;j<6;j++){
-                if(tablero[i][j]==1){ //Comprueba puntos jugador1
-                    contador1++ ;            
-                
+                if(tablero[i][j]==jugador){ //Comprueba puntos jugador1
+                    contador1++ ;
+                    System.out.println("Secuencia en filas: "+i+j+" "+contador1);
+                    continue;
                 }else{
-                    Puntos1=Puntos1 + calculapuntos(contador1); //Calcula puntos en relación al número de fichas consecutivas
+                    Puntos1=Puntos1 + calculapuntos(contador1); //Calcula puntos en relación al número de fichas consecutivas en una misma fila
                     contador1=0;
-                    
                 }
-                //
+                
             }
         }
             //Comprueba los puntos por columnas
             for(int j=0;j<6;j++){
+                Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso última no cogida bien
+                contador1=0;
                 for(int i=0;i<6;i++){
-                    if(tablero[i][j]==1){ //Comprueba puntos jugador1
-                        contador1++ ;            
-                    
+                    if(tablero[i][j]==jugador){ //Comprueba puntos jugador1
+                        contador1++ ;
+                        System.out.println("Secuencia en columna: "+i+j+" "+contador1);
+                        continue;
                     }else{
                         Puntos1=Puntos1 + calculapuntos(contador1); //Calcula puntos en relación al número de fichas consecutivas
                         contador1=0;
-                        
                     }
-                    //
                 }
             }
+            Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso última no cogida bien
+            contador1=0;            
             //Comprueba los puntos de la daigonal descendente
             for(int i=0, j=0; i<6 && j<6; i++,j++){
-                if(tablero[i][j]==1){ //Comprueba puntos jugador1
-                    contador1++ ;            
+                if(tablero[i][j]==jugador){ //Comprueba puntos jugador1
+                    contador1++ ;
+                    System.out.println("Secuencia en diagonal desc: "+i+j+" "+contador1);    
+                    continue;        
                 
                 }else{
                     Puntos1=Puntos1 + calculapuntos(contador1); //Calcula puntos en relación al número de fichas consecutivas
-                    contador1=0;
-                    
-                }                
-                
+                    contador1=0;                    
+                }   
             }
-
+            Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso última no cogida bien
+            contador1=0;
             //Comprueba los puntos de la diagonal ascendente
-            for(int i=6, j=0; i>0 && j<6; i--,j++){
-                if(tablero[i][j]==1){ //Comprueba puntos jugador1
-                    contador1++ ;            
+
+            for(int i=5, j=0; i>=0 && j<6; i--,j++){
+                if(tablero[i][j]==jugador){ //Comprueba puntos jugador1
+                    contador1++ ;
+                    System.out.println("Secuencia en diagonal ascendet: "+i+j+" "+contador1);
+                    continue;            
                 
                 }else{
                     Puntos1=Puntos1 + calculapuntos(contador1); //Calcula puntos en relación al número de fichas consecutivas
@@ -302,20 +312,23 @@ public class Tabla extends HttpServlet{
                 }                
                 
             }    
-            
+            Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso última no cogida bien
+            contador1=0;
             return Puntos1;
 
     }
 
     public int calculapuntos(int contador){
+        System.out.println("Dentro del metodo " +contador);
         int puntos = 0;
-        if(contador==4){
-            puntos = puntos + 1;
+        if(contador==6){
+            puntos = 3;
         }else if(contador==5){
-            puntos = puntos + 2;
-        }else if(contador==6){
-            puntos = puntos +3;
+            puntos = 2;
+        }else if(contador==4){
+            puntos = 1;
         }
+        System.out.println("Puntos devueltos: "+puntos);
         return puntos;
     }
 
