@@ -199,6 +199,17 @@ public class Tabla extends HttpServlet{
                 }
                 out.println("</table>");
 
+                //CAJA DE LOS PUNTOS
+                out.println("<table border=\"3\">");
+                out.println("<tr><td>TUS PUNTOS</td></tr>");
+                out.println("<tr><td>"+puntos1+"</td></tr>");
+                out.println("</table>");
+
+                out.println("<table border=\"3\">");
+                out.println("<tr><td>PUNTOS DEL CONTRINCANTE</td></tr>");
+                out.println("<tr><td>"+puntos2+"</td></tr>");
+                out.println("</table>");
+
                 out.println("<nav>");
                 out.println("<a href=\"menu\">MENU</a>");
                 out.println("</nav>");
@@ -243,6 +254,8 @@ public class Tabla extends HttpServlet{
         }
 
     }
+
+
 
     //Método para calcular los puntos al final de la pártida
     public int Puntos(int [][] tablero, int jugador) {
