@@ -2,4 +2,8 @@
 comment0.target=Tabla
 comment1.params=req\ res
 comment1.target=void\ doPost(javax.servlet.http.HttpServletRequest,\ javax.servlet.http.HttpServletResponse)
-numComments=2
+comment2.params=tablero
+comment2.target=int\ Puntos(int[][])
+comment3.params=contador
+comment3.target=int\ calculapuntos(int)
+numComments=4

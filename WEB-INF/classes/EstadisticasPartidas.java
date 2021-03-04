@@ -39,9 +39,9 @@ public class EstadisticasPartidas extends HttpServlet{
             out.println("<h1>ESTADISTICAS DE "+nick+"</h1>");
             out.println("<table>");
             
-            out.println("<tr><td>PARTIDAS JUGADAS</td><td>"+totalJugadas+"</td></tr>");
+            /*out.println("<tr><td>PARTIDAS JUGADAS</td><td>"+totalJugadas+"</td></tr>");
             out.println("<tr><td>PARTIDAS GANADAS</td><td>"+totalGanadas+"</td></tr>");
-            out.println("<tr><td>PARTIDAS PERDIDAS</td><td>"+totalPerdidas+"</td></tr>");
+            out.println("<tr><td>PARTIDAS PERDIDAS</td><td>"+totalPerdidas+"</td></tr>");*/
             
             out.println("</table>");
             out.println("</body>");
