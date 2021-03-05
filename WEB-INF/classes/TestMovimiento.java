@@ -20,6 +20,7 @@ public class TestMovimiento extends HttpServlet{
         HttpSession sesion,sesion2;
         int idUsuario_yo;
         String idPartida; 
+        boolean botones_visibles[]=new boolean[6];
 
         try{
             sesion2=(HttpSession)req.getSession(true);
@@ -29,27 +30,27 @@ public class TestMovimiento extends HttpServlet{
             out=res.getWriter();
             out.println("<html>");
             out.println("<head>");
-            
-            //out.println("<html>");
-            //out.println("<head>");
-            //out.println("OKKKKK");
-            
+
             for(int i=0;i<6;i++){
-                
+                botones_visibles[i]=true;
+            }
+
+            for(int i=0;i<6;i++){
+
                 for(int j=0;j<6;j++){
                     tablero[i][j]=0;
-                    
+
                     tablero_actualizado[i][j]="<div class=\"fichavacia\"></div>";
                 }
             }
-            
+
             idPartida=req.getParameter("continuar");
-            
+
             sesion=(HttpSession) req.getSession();
             sesion.setAttribute("idPartida",idPartida);
             nick=(String) sesion.getAttribute("nick");
             sesion.setAttribute("idPartida",idPartida); //Guardo idPartida en variable de sesion para el siguiente servlet
-            
+
             out.println("OK var");
             SQL_aux="SELECT * FROM usuarios WHERE Nick='"+nick+"'";
             st_aux=con.createStatement();
@@ -57,19 +58,18 @@ public class TestMovimiento extends HttpServlet{
             rs_aux.next();
             idUsuario_yo=rs_aux.getInt(1);
             out.println(idUsuario_yo);
-            
-            
+
             
             //st_nick=con.createStatement();
             //rs_nick=st_nick.executeQuery(SQL_consulta_nick);
             //rs_nick.next();
             //idUsuario_yo=rs_nick.getInt(1);
-            
+
             SQL="SELECT movimientos.Casilla FROM movimientos INNER JOIN (partidas INNER JOIN usuarios ON partidas.IdJugador1=usuarios.IdUsuario)"+
             "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida="+idPartida+" AND movimientos.IdUsuario="+idUsuario_yo;//MIS FICHAS
             st=con.createStatement();
             rs=st.executeQuery(SQL);
-            
+
             //Tengo donde están MIS FICHAS
             while(rs.next()){
                 out.println("BUCLE");
@@ -78,8 +78,7 @@ public class TestMovimiento extends HttpServlet{
                 columna=casilla.substring(1);
                 tablero[Integer.parseInt(fila)][Integer.parseInt(columna)]=1;
             }
-            
-            
+
             SQL2="SELECT movimientos.Casilla FROM movimientos INNER JOIN (partidas INNER JOIN usuarios ON partidas.IdJugador2=usuarios.IdUsuario)"+
             "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida="+idPartida+" AND movimientos.IdUsuario<>"+idUsuario_yo;
             st2=con.createStatement();
@@ -93,7 +92,14 @@ public class TestMovimiento extends HttpServlet{
                 columna=casilla.substring(1);
                 tablero[Integer.parseInt(fila)][Integer.parseInt(columna)]=2;
             }
-            
+
+            //Compruebo si está todo lleno arriba
+            for(int i=0;i<6;i++){
+                if(tablero[0][i]!=0){
+                    botones_visibles[i]=false;
+                }
+            }
+
             for(int i=0;i<6;i++){
                 for(int j=0;j<6;j++){
                     if(tablero[i][j]==1){
@@ -118,47 +124,49 @@ public class TestMovimiento extends HttpServlet{
             out.println("<table width=" +"\"auto\"" +"height=" +"\"auto\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
                 +"cellpadding=" +"\"2\"" +">");
             out.println("<tr align=" +"\"center\"" +">");
-            for(int i=1;i<7;i++){
-                out.println("<td class="+"\"filabotones\""+">"+"<input type=" +"\"submit\"" +"name="+"\"BO"+i+"\"" +"value="+"\"BO"+i+"\""+"class="+
-                    "\"invisible\""+">");
-            }
-            out.println("</tr>");
-            out.println("</table>"); //FIN Primera fila de botones
-            out.println("</form>");
-            
-            
-            out.println("<table width=" +"\"auto\"" +"height=" +"\"auto\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
-                +"cellpadding=" +"\"2\"" +">");   
-            for (int i=0;i<6;i++){
-                out.println("<tr class=\"filatablero\" align=" +"\"center\"" +">");
-                for (int j=0;j<6;j++){                
-                    out.println("<td>"+tablero_actualizado[i][j]+"</td>");
+            for(int i=0;i<6;i++){
+                if(botones_visibles[i]){
+                    out.println("<td class="+"\"filabotones\""+">"+"<input type=" +"\"submit\"" +"name="+"\"BO"+i+"\"" +"value="+"\"BO"+i+"\""+"class="+
+                        "\"invisible\""+">");
+                }else{
+                    out.println("<td class="+"\"filabotones\">");
                 }
-                out.println("</tr>");
             }
-            sesion.setAttribute("tablero",tablero); //Envio matriz de ints           
-            out.println("</table");
-            
-            //CAJA DE LOS PUNTOS
-            /*out.println("<table border=\"3\">");
-            out.println("<tr><td>TUS PUNTOS</td></tr>");
-            out.println("<tr><td>"+100+"</td></tr>");
-            out.println("</table>");
-            
-            out.println("<table>");
-            out.println("<tr><td>PUNTOS DEL CONTRINCANTE</td></tr>");
-            out.println("<tr><td>"+100+"</td></tr>");
-            out.println("</table>");*/
-            
-            
-            out.println("</body></html>");
-            rs.close();
-            rs2.close();
-            st.close();
-            st2.close();
-            con.close();
-            out.close();
-        }catch (Exception e){
+                out.println("</tr>");
+                out.println("</table>"); //FIN Primera fila de botones
+                out.println("</form>");
+
+                out.println("<table width=" +"\"auto\"" +"height=" +"\"auto\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
+                    +"cellpadding=" +"\"2\"" +">");   
+                for (int i=0;i<6;i++){
+                    out.println("<tr class=\"filatablero\" align=" +"\"center\"" +">");
+                    for (int j=0;j<6;j++){                
+                        out.println("<td>"+tablero_actualizado[i][j]+"</td>");
+                    }
+                    out.println("</tr>");
+                }
+                sesion.setAttribute("tablero",tablero); //Envio matriz de ints           
+                out.println("</table");
+
+                //CAJA DE LOS PUNTOS
+                /*out.println("<table border=\"3\">");
+                out.println("<tr><td>TUS PUNTOS</td></tr>");
+                out.println("<tr><td>"+100+"</td></tr>");
+                out.println("</table>");
+
+                out.println("<table>");
+                out.println("<tr><td>PUNTOS DEL CONTRINCANTE</td></tr>");
+                out.println("<tr><td>"+100+"</td></tr>");
+                out.println("</table>");*/
+
+                out.println("</body></html>");
+                rs.close();
+                rs2.close();
+                st.close();
+                st2.close();
+                con.close();
+                out.close();
+            }catch (Exception e){
             System.err.println(e);
         }
     }
