@@ -8,12 +8,10 @@
 	<servlet-class>InicioSesionForm</servlet-class>
 </servlet>
 
-
-
 <servlet>
-<servlet-name>Tabla</servlet-name>
-<description> Tablero inicial </description>
-<servlet-class>Tabla</servlet-class>
+	<servlet-name>Tabla</servlet-name>
+	<description> Tablero inicial </description>
+	<servlet-class>Tabla</servlet-class>
 </servlet>
 
 <servlet>
@@ -47,6 +45,11 @@
 </servlet>
 
 <servlet>
+	<servlet-name>ServletRegistro</servlet-name>
+	<servlet-class>ServletRegistro</servlet-class>
+</servlet>
+
+<servlet>
 	<servlet-name>CheckInicioSesion</servlet-name>
 	<servlet-class>CheckInicioSesion</servlet-class>
 </servlet>
@@ -54,6 +57,21 @@
 <servlet>
 	<servlet-name>CreaPartida</servlet-name>
 	<servlet-class>CreaPartida</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>TestMovimiento</servlet-name>
+	<servlet-class>TestMovimiento</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>PrePartidaIniciada</servlet-name>
+	<servlet-class>PrePartidaIniciada</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>MisPartidas</servlet-name>
+	<servlet-class>MisPartidas</servlet-class>
 </servlet>
 
 
@@ -67,11 +85,9 @@
 	<url-pattern>/iniciosesion</url-pattern>
 </servlet-mapping>
 
-
-
 <servlet-mapping>
-<servlet-name>Tabla</servlet-name>
-<url-pattern>/tabla</url-pattern>
+	<servlet-name>Tabla</servlet-name>
+	<url-pattern>/tabla</url-pattern>
 </servlet-mapping>
 
 <servlet-mapping>
@@ -105,9 +121,32 @@
 </servlet-mapping>
 
 <servlet-mapping>
+	<servlet-name>ServletRegistro</servlet-name>
+	<url-pattern>/registro</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
 	<servlet-name>CreaPartida</servlet-name>
 	<url-pattern>/nueva/crea</url-pattern>
 </servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>TestMovimiento</servlet-name>
+	<url-pattern>/TestMovimiento</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>PrePartidaIniciada</servlet-name>
+	<url-pattern>/prepartida</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>MisPartidas</servlet-name>
+	<url-pattern>/listapartidas</url-pattern>
+</servlet-mapping>
+
+
+
 
 
 

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&family=Roboto+Mono:wght@600&display=swap');
+body{
+    color:black;
+    background-color:#8db3d6;
+}
+.letra1{
+    font-family: monospace;
+}
+.letra2{
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+}
+.colorletra1{
+    color:#E0AD1F;
+}
+.colorletra2{
+    color: #DED454;
+}
+.colorfondo1{
+    background-color: #273E8F;
+}
+.colorfondo2{
+    background-color: #6785F0;
+}
+.colorfondo3{
+    background-color:#8db3d6;
+}
+#encabezado{
+    padding-bottom: 10px;
+}
+#titulo{
+    
+    text-align: center;
+    font-size: 70px;
+    /*font-family: Verdana, Geneva, Tahoma, sans-serif;*/
+    font-weight: bold;    
+}
+#subtitulo{
+    text-align: center;
+    font-size: 30px;
+    /*font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;*/
+    font-weight: bold;
+}
+.botones{
+    padding-top: 10px;
+    text-align: center;
+}
