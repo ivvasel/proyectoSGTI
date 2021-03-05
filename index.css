@@ -16,7 +16,6 @@ h1{
     font-size: 50px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: red
-
 }
 
 .titulo{
@@ -25,16 +24,41 @@ h1{
     
 }
 
-
-.ficharoja{
-	width: auto;
-	height: 30px;
-	background: red;
-	border-radius: 20px;
+.filatablero{
+    height: 80px;
+    width: 80px;
 }
 
-td{
+.filabotones{
+    height: 80px;
+    width: 80px;
+}
+
+.fichaazul{
+	width: 80px;
+	height: 80px;
+	background: blue;
+	border-radius: 40px;
+}
+
+.ficharoja{
+    width: 80px;
+	height: 80px;
+	background: red;
+	border-radius: 40px;
+}
+
+.fichavacia{
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 40px;
+}
+
+.casillas{
     width: auto;
     height: auto;
 }
+
+
 

@@ -59,6 +59,22 @@
 	<servlet-class>CreaPartida</servlet-class>
 </servlet>
 
+<servlet>
+	<servlet-name>TestMovimiento</servlet-name>
+	<servlet-class>TestMovimiento</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>PrePartidaIniciada</servlet-name>
+	<servlet-class>PrePartidaIniciada</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>MisPartidas</servlet-name>
+	<servlet-class>MisPartidas</servlet-class>
+</servlet>
+
+
 <servlet-mapping>
 	<servlet-name>InicioSesionForm</servlet-name>
 	<url-pattern>/iniciosesionform</url-pattern>
@@ -68,6 +84,7 @@
 	<servlet-name>CheckInicioSesion</servlet-name>
 	<url-pattern>/iniciosesion</url-pattern>
 </servlet-mapping>
+
 <servlet-mapping>
 	<servlet-name>Tabla</servlet-name>
 	<url-pattern>/tabla</url-pattern>
@@ -112,6 +129,24 @@
 	<servlet-name>CreaPartida</servlet-name>
 	<url-pattern>/nueva/crea</url-pattern>
 </servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>TestMovimiento</servlet-name>
+	<url-pattern>/TestMovimiento</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>PrePartidaIniciada</servlet-name>
+	<url-pattern>/prepartida</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>MisPartidas</servlet-name>
+	<url-pattern>/listapartidas</url-pattern>
+</servlet-mapping>
+
+
+
 
 
 

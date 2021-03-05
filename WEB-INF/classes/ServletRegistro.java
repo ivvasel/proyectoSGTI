@@ -39,9 +39,15 @@ public class ServletRegistro extends HttpServlet {
                 out.println("<tr><td><strong>Usuario</strong></td><td><input name='nick' type='text' /></td></tr>");
                 out.println("<tr><td><strong>Nombre</strong></td><td><input name='nombre' type='text' /></td></tr>");
                            
+<<<<<<< HEAD
                 out.println("<tr><td><strong>Correo electrónico</strong></td><td><input name='email' type='email' /></td></tr>");
                 out.println("<tr><td><strong>Contraseña</strong></td><td><input name='pdw1' type='password' /></td></tr>");
                 out.println("<tr><td><strong>Repita contraseña</strong></td><td><input name='pdw2' type='password' /></td></tr>");
+=======
+            out.println("<tr><td><strong>Correo electrónico</strong></td><td><input name='email' type='email' /></td></tr>");
+            out.println("<tr><td><strong>Contraseña</strong></td><td><input name='pdw1' type='password' /></td></tr>");
+            out.println("<tr><td><strong>Repita contraseña</strong></td><td><input name='pdw2' type='password' /></td></tr>");
+>>>>>>> testingIvan
                         
             out.println("</table>");
 
