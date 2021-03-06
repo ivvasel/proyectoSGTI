@@ -4,8 +4,8 @@
 <description>Proyecto de curso STGI 6 en raya </description>
 
 <servlet>
-	<servlet-name>InicioSesionForm</servlet-name>
-	<servlet-class>InicioSesionForm</servlet-class>
+	<servlet-name>ServletInicioSes</servlet-name>
+	<servlet-class>ServletInicioSes</servlet-class>
 </servlet>
 
 <servlet>
@@ -76,8 +76,8 @@
 
 
 <servlet-mapping>
-	<servlet-name>InicioSesionForm</servlet-name>
-	<url-pattern>/iniciosesionform</url-pattern>
+	<servlet-name>ServletInicioSes</servlet-name>
+	<url-pattern>/login</url-pattern>
 </servlet-mapping>
 
 <servlet-mapping>

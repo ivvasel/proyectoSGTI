@@ -1,5 +1,0 @@
-#BlueJ class context
-comment0.target=InicioSesForm
-comment1.params=req\ res
-comment1.target=void\ doGet(javax.servlet.http.HttpServletRequest,\ javax.servlet.http.HttpServletResponse)
-numComments=2
