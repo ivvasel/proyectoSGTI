@@ -20,9 +20,9 @@ public class EstadisticasJug extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
             st=con.createStatement();
-            SQL="SELECT * FROM historicopartidas WHERE idUsuario= '"+idUsuario+"'"';
+            SQL="SELECT * FROM historicopartidas WHERE idUsuario= '"+idUsuario+"'";
             rs = st.executeQuery(SQL);
-
+            rs.next();
             out = res.getWriter();
             res.setContentType("text/html");
             out.println("<!DOCTYPE html>");
@@ -54,10 +54,11 @@ public class EstadisticasJug extends HttpServlet {
                     out.println("<div class='colorletra2 letra1' id='mensajeEstad'>");
                         out.println("A continuación puedes observar los número totales de partidas jugadas, ganadas y perdidas. Además, podrás observar la suma total de puntos que has conseguido hasta ahora!");
                     out.println("</div>");
-                out.println("<table>");
+                out.println("<table>");                
                 out.println("<tr> <td> Partidas ganadas </td><td> '"+ rs.getString("Ganadas")+"' </td></tr>");
                 out.println("<tr> <td> Partidas perdidas </td><td> '"+ rs.getString("Perdidas")+"' </td></tr>");
                 out.println("<tr> <td> Puntos totales </td><td> '"+ rs.getString("PuntosTotales")+"' </td></tr>");
+                
                 out.println("</table>");
 
                 out.println("</body></html>");
