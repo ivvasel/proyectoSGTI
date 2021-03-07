@@ -31,8 +31,28 @@ public class MisPartidas extends HttpServlet{
             idUsuario=(int)sesion.getAttribute("idUsuario");
             res.setContentType("text/html");
             out=res.getWriter();
+            out.println("<!DOCTYPE html>");
             out.println("<html>");
-            out.println("<body>");
+            out.println("<head>");
+            out.println("<meta charset='utf-8' />");
+            out.println("<title>Login</title>");
+            out.println("<script src='web/recursos/javascripts/login.js'></script>");
+            out.println("<link rel='stylesheet' href='web/recursos/estilos/principal.css' type='text/css' media='all'>");
+            out.println("<link rel='stylesheet' href='web/recursos/estilos/login.css' type='text/css' media='all'>");
+            out.println("</head>");
+
+            out.println("<body class='colorfondo3'>");
+
+            out.println("<div id='encabezado'>");
+            out.println("<div class='colorletra1 colorfondo1 letra1' id='titulo'>");
+            out.println("CUATRO EN RAYA!");
+            out.println("</div>");
+            out.println("<div class='colorletra2 colorfondo2 letra1'id='subtitulo'>");
+            out.println("Lista de partidas");
+            out.println("</div>");
+            out.println("</div>");
+
+
             out.println(idUsuario);
             //nick_mio=(String)sesion.getAttribute("nick");
             Class.forName("com.mysql.jdbc.Driver");

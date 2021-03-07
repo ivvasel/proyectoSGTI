@@ -25,8 +25,8 @@ public class MenuPrincipal extends HttpServlet{
                 out.println("<title>Menu</title>");
                 out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/principal.css' type='text/css' media='all'>");
                 out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/nav.css'>");
-                
                 out.println("</head>");
+                
                 out.println("<body>");
                     out.println("<div id='encabezado'>");
                         out.println("<div class='colorletra1 colorfondo1 letra1' id='titulo'>");
@@ -36,12 +36,12 @@ public class MenuPrincipal extends HttpServlet{
                             out.println("<nav>");
                             out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='nueva' > INICIAR PARTIDA </a>");
                             out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='listapartidas'> MIS PARTIDAS </a>");
-                            out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='#'> ESTADISTICAS </a>");
+                            out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='estadisticas'> ESTADISTICAS </a>");
                             out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='index.html'> SALIR </a>");
                             out.println("</nav>");
                         out.println("</div>");
                     out.println("</div>");
-                out.println("<h1 class = 'letra1 ' id='subtitulo'>¡BIENVENIDO "+nick+"!</h1>");
+                out.println("<h1 class = 'letra1 ' id='subtitulo'>BIENVENIDO "+nick+"!</h1>");
                 out.println("<img src='/proyectoSGTI/web/recursos/imagenes/tablero.jfif'>");
                 out.println("</body></html>");
 
