@@ -15,7 +15,7 @@ public class ServletInicioSes extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<meta charset='utf-8' />");
+            out.println("<meta charset='ISO 8859-1' />");
             out.println("<title>Login</title>");
             out.println("<script src='web/recursos/javascripts/login.js'></script>");
             out.println("<link rel='stylesheet' href='web/recursos/estilos/principal.css' type='text/css' media='all'>");
@@ -80,7 +80,7 @@ public class ServletInicioSes extends HttpServlet {
             st2=con.createStatement();
 
             
-            SQL="SELECT * FROM usuarios WHERE Nick='"+nick+"' AND Contrase?a='"+pass+"'";
+            SQL="SELECT * FROM usuarios WHERE Nick='"+nick+"' AND Contraseña='"+pass+"'";
             rs=st.executeQuery(SQL);
 
             if(rs.next()){

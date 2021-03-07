@@ -40,14 +40,18 @@ public class NuevaPartida extends HttpServlet{
                         out.println("<div class='colorletra1 colorfondo1 letra1' id='titulo'>");
                              out.println("CUATRO EN RAYA!");
                         out.println("</div>");
-                        out.println("<div class='colorfondo2 '>");
+                        out.println("<div class='colorletra2 colorfondo2 letra1' id='subtitulo'>");
+                            out.println("Empieza una nueva partida. ¿A qué esperas?");
+                        out.println("</div>");
+                        out.println("<div class='colorletra3 colorfondo1 letra1' id='menubotones'>'>");
                             out.println("<nav>");
-                            out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='nueva/aleatoria' > VER TODOS LOS USUARIOS </a>");
-                            out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='amigos'> JUGAR CON AMIGO </a>");
+                            out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='nueva/aleatoria' > VER TODOS LOS USUARIOS </a>");
+                            out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='amigos'> JUGAR CON AMIGO </a>");
+                            out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='menu'> VOLVER AL MENÚ </a>");
                             out.println("</nav>");
                         out.println("</div>");
                     out.println("</div>");
-                out.println("<h1 class = 'letra1 ' id='subtitulo'>¿Con quién desea iniciar una partida?</h1>");
+                out.println("<h1 class = 'letra1 ' id='subtitulo'> ¿Con quién quieres iniciar una partida nueva? </h1>");
                 out.println("</body></html>");
            
         }catch (Exception e){
