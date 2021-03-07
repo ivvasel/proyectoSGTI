@@ -87,6 +87,11 @@
 	<servlet-class>PrePartidaIniciada</servlet-class>
 </servlet>
 
+<servlet>
+	<servlet-name>EditaCuenta</servlet-name>
+	<servlet-class>EditaCuenta</servlet-class>
+</servlet>
+
 
 <servlet-mapping>
 	<servlet-name>ServletRegistro</servlet-name>
@@ -141,6 +146,11 @@
 <servlet-mapping>
 	<servlet-name>EstadisticasJug</servlet-name>
 	<url-pattern>/estadisticas</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>EditaCuenta</servlet-name>
+	<url-pattern>/editardatos</url-pattern>
 </servlet-mapping>
 
 <servlet-mapping>

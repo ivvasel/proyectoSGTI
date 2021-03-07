@@ -37,6 +37,7 @@ public class MenuPrincipal extends HttpServlet{
                             out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='nueva' > INICIAR PARTIDA </a>");
                             out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='listapartidas'> MIS PARTIDAS </a>");
                             out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='estadisticas'> ESTADISTICAS </a>");
+                            out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='editardatos'> DATOS DE LA CUENTA </a>");
                             out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='index.html'> SALIR </a>");
                             out.println("</nav>");
                         out.println("</div>");
