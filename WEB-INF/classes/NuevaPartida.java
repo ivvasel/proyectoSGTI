@@ -30,7 +30,7 @@ public class NuevaPartida extends HttpServlet{
             out.println("<!DOCTYPE html>");
             out.println("<html>");
                 out.println("<head>");
-                out.println("<title>Bucando contrincante</title>");
+                out.println("<title>6 en raya</title>");
                 out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/principal.css' type='text/css' media='all'>");
                 out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/nav.css'>");
                 
@@ -43,7 +43,7 @@ public class NuevaPartida extends HttpServlet{
                         out.println("<div class='colorletra2 colorfondo2 letra1' id='subtitulo'>");
                             out.println("Empieza una nueva partida. ¿A qué esperas?");
                         out.println("</div>");
-                        out.println("<div class='colorletra3 colorfondo1 letra1' id='menubotones'>'>");
+                        out.println("<div class='colorletra3 colorfondo1 letra1' id='menubotones'>");
                             out.println("<nav>");
                             out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='nueva/aleatoria' > VER TODOS LOS USUARIOS </a>");
                             out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='amigos'> JUGAR CON AMIGO </a>");

@@ -1,3 +1,4 @@
+
 //Este servlet muestra un menu select con las partidas que tengo pendientes Y ES MI TURNO
 import java.sql.*;
 import java.io.*;
@@ -35,28 +36,26 @@ public class MisPartidas extends HttpServlet{
             out.println("<html>");
             out.println("<head>");
             out.println("<meta charset='ISO 8859-1'/>");
-            out.println("<title>Login</title>");
+            out.println("<title>Partidas</title>");
             out.println("<script src='web/recursos/javascripts/login.js'></script>");
             out.println("<link rel='stylesheet' href='web/recursos/estilos/principal.css' type='text/css' media='all'>");
-            out.println("<link rel='stylesheet' href='web/recursos/estilos/login.css' type='text/css' media='all'>");
+            out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/nav.css'>");
             out.println("</head>");
 
             out.println("<body>");
 
+
             out.println("<div id='encabezado'>");
-                out.println("<div class='colorletra1 colorfondo1 letra1' id='titulo'>");
-                    out.println("CUATRO EN RAYA!");
-                out.println("</div>");
-                out.println("<div class='colorletra2 colorfondo2 letra1'id='subtitulo'>");
-                    out.println("Lista de partidas");
-                out.println("</div>");
-                out.println("<div class='colorletra3 colorfondo1 letra1' id='menubotones'>");
+                        out.println("<div class='colorletra1 colorfondo1 letra1' id='titulo'>");
+                             out.println("Lista de partidas");
+                        out.println("</div>");
+                        out.println("<div class='colorfondo2 '>");
                             out.println("<nav>");
-                                out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='historicoPartidas'> Seguir partidas </a>");
-                                out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='menu'> Volver al menú </a>");
+                            out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='historicoPartidas' > Seguir partidas </a>");
+                            out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='menu'> VOLVER </a>");
                             out.println("</nav>");
                         out.println("</div>");
-            out.println("</div>");
+                    out.println("</div>");
 
 
             out.println(idUsuario);

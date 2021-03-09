@@ -36,7 +36,7 @@ public class ServletInicioSes extends HttpServlet {
             out.println("<form method='post' action='login' name='iniciosesion' onsubmit='return validar()' class='colorfondo2 letra2'> ");
             out.println("<table>");
             out.println("<tr><td><strong>Usuario</strong></td><td><input type='text' name='nick'></td></tr>");
-            out.println("<tr><td><strong>Contrase?a</strong></td><td><input type='password' name='password'></td></tr>");
+            out.println("<tr><td><strong>Contraseña</strong></td><td><input type='password' name='password'></td></tr>");
             out.println("</table>");
 
             out.println("<div class='botones'>    ");
@@ -80,7 +80,7 @@ public class ServletInicioSes extends HttpServlet {
             st2=con.createStatement();
 
             
-            SQL="SELECT * FROM usuarios WHERE Nick='"+nick+"' AND Contrase?a='"+pass+"'";
+            SQL="SELECT * FROM usuarios WHERE Nick='"+nick+"' AND Contraseña='"+pass+"'";
             rs=st.executeQuery(SQL);
 
             if(rs.next()){
