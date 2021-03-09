@@ -5,11 +5,25 @@ import java.io.*;
 public class EditaCuenta extends HttpServlet {
     public void doGet (HttpServletRequest req, HttpServletResponse res) {
         Connection con;
-        Statement st, st2;
+        Statement st;
         ResultSet rs;
-        String SQL, SQL2, nick, nombre, email, pwd, color;
+        String SQL, nick, nickAntiguo, nombre, email;
         PrintWriter out;
+        HttpSession misesion;
         try {
+            misesion=(HttpSession) req.getSession();
+            nick=(String) misesion.getAttribute("nick");
+
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
+            st = con.createStatement();
+            SQL="SELECT * FROM usuarios WHERE Nick='"+nick+"'";
+            rs= st.executeQuery(SQL);
+            rs.next();
+            nick = rs.getString("nick");
+            nombre = rs.getString("nombre");
+            email = rs.getString("email");
+            
             out=res.getWriter();
             res.setContentType("text/html");
             out.println("<html>");
@@ -33,12 +47,12 @@ public class EditaCuenta extends HttpServlet {
                 out.println("</div>");
             out.println("</div>");
 
-            out.println("<form action='editadatos' method='post' name='editadatos' onsubmit='return validar()' class='colorfondo2 letra2'>");
+            out.println("<form action='editardatos' method='post' name='editardatos' onsubmit='return validar()' class='colorfondo2 letra2'>");
             out.println("<table>");
-                out.println("<tr><td><strong>Usuario</strong></td><td><input name='nick' type='text' /></td></tr>");
-                out.println("<tr><td><strong>Nombre</strong></td><td><input name='nombre' type='text' /></td></tr>");
+                out.println("<tr><td><strong>Usuario</strong></td><td> '"+nick+"' <br></td></tr>");
+                out.println("<tr><td><strong>Nombre</strong></td><td><input name='nombre' type='text'/> <br> (Nombre actual: '"+nombre+"') <br></td></tr>");
                            
-                out.println("<tr><td><strong>Correo electrónico</strong></td><td><input name='email' type='email' /></td></tr>");
+                out.println("<tr><td><strong>Correo electrónico</strong></td><td><input name='email' type='email' /> <br> (Email actual: '"+email+"') <br></td></tr>");
                 out.println("<tr><td><strong>Contraseña</strong></td><td><input name='pwd1' type='password' /></td></tr>");
                 out.println("<tr><td><strong>Repita contraseña</strong></td><td><input name='pwd2' type='password' /></td></tr>");
                         
@@ -60,32 +74,65 @@ public class EditaCuenta extends HttpServlet {
         Connection con;
         Statement st, st2;
         ResultSet rs;
-        String SQL, SQL2, nick, nombre, email, pwd, color;
+        
+        String SQL, SQL2, nick, nickNuevo, nombre, email, pwd1, pwd2, color;
+        HttpSession misesion;
         PrintWriter out;
         try {
+            misesion = (HttpSession) req.getSession();
+            nick = (String) misesion.getAttribute("nick");
+
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
             st = con.createStatement();
             st2 = con.createStatement();
             
-            nick = req.getParameter("nick");
+            //nickNuevo = req.getParameter("nick");
             nombre = req.getParameter("nombre");
             email = req.getParameter("email");
-            pwd = req.getParameter("pwd1");
-            //color = req.getParameter("Color");
+            pwd1 = req.getParameter("pwd1");
+            pwd2 = req.getParameter("pwd2");
+            
+            out = res.getWriter();
 
-            SQL="SELECT * FROM usuarios WHERE Nick='"+nick+"'";
-            rs= st.executeQuery(SQL);
-            if(rs.next()) {
-                out = res.getWriter();
-                res.setContentType("TEXT/HTML");
-                out.println("<HTML> <BODY>");
-                out.println("El nick introducido ya existe. Por favor, escriba uno diferente");
-                res.sendRedirect("editadatos");
-                out.println("</BODY> </HTML>");
+            // if (!nick.isEmpty()){
+            //     SQL2="SELECT * FROM usuarios WHERE Nick='"+nickNuevo+"'";
+            //     rs= st.executeQuery(SQL2);
+            //     if(rs.next()) {
+            //     res.setContentType("TEXT/HTML");
+            //     out.println("<HTML> <BODY>");
+            //     out.println("El nick introducido ya existe. Por favor, escriba uno diferente");
+            //     res.sendRedirect("editardatos");
+            //     out.println("</BODY> </HTML>");
+            //     }
+            //     else {
+            //     SQL="UPDATE usuarios SET Nick='"+nickNuevo+"' WHERE Nick='"+nick+"'";
+            //     st.executeUpdate(SQL);
+            //     misesion.setAttribute(nickNuevo,"nick");
+            //     }
+            // }
+            if (!nombre.isEmpty()) {
+                SQL="UPDATE usuarios SET Nombre='"+nombre+"' WHERE Nick='"+nick+"'";
+                st.executeUpdate(SQL);
             }
-            SQL2= "INSERT INTO usuarios (Nick, Nombre, Contraseña, Email) VALUES ('"+nick+"', '"+nombre+"', '"+pwd+"', '"+email+"')";
-            st2.executeUpdate(SQL2);            
+            else if (!email.isEmpty()) {
+                SQL="UPDATE usuarios SET Email='"+email+"' WHERE Nick='"+nick+"'";
+                st.executeUpdate(SQL);
+            }
+            else if (!pwd1.isEmpty() && !pwd2.isEmpty()) {
+                if (!pwd1.equals(pwd2)) {
+                    res.setContentType("TEXT/HTML");
+                    out.println("<HTML> <BODY>");
+                    out.println("Ambas contraseñas no coinciden. Por favor, asegúrese de que son iguales.");
+                    res.sendRedirect("editardatos");
+                    out.println("</BODY> </HTML>");
+                }
+                else {
+                SQL="UPDATE usuarios SET Contraseña='"+pwd1+"' WHERE Nick='"+nick+"'";
+                st.executeUpdate(SQL);
+                }
+            }
+                  
             st.close();
             con.close();
 

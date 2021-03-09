@@ -80,7 +80,7 @@ public class ServletInicioSes extends HttpServlet {
             st2=con.createStatement();
 
             
-            SQL="SELECT * FROM usuarios WHERE Nick='"+nick+"' AND Contraseña='"+pass+"'";
+            SQL="SELECT * FROM usuarios WHERE Nick='"+nick+"' AND Contrase?a='"+pass+"'";
             rs=st.executeQuery(SQL);
 
             if(rs.next()){
