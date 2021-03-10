@@ -11,7 +11,7 @@ public class MisPartidas extends HttpServlet{
         ResultSet rs,rs2,rs3,rs_aux;
         Statement st,st2,st3;
         String SQL,SQL2,SQL3,SQL_aux;
-        
+
         String SQL_general;
         Statement st_general;
         ResultSet rs_general;
@@ -25,8 +25,7 @@ public class MisPartidas extends HttpServlet{
         String SQL_general_1,SQL_general_2;
         Statement st_general_1,st_general_2;
         ResultSet rs_general_1,rs_general_2;
-        
-        
+
         try{
             sesion=(HttpSession) req.getSession(true);
             idUsuario=(int)sesion.getAttribute("idUsuario");
@@ -43,56 +42,59 @@ public class MisPartidas extends HttpServlet{
             out.println("</head>");
             out.println("<body>");
             out.println("<div id='encabezado'>");
-                out.println("<div class='colorletra1 colorfondo1 letra1' id='titulo'>");
-                    out.println("CUATRO EN RAYA!");
-                out.println("</div>");
-                out.println("<div class='colorletra2 colorfondo2 letra1' id='subtitulo'>");
-                    out.println("MIS PARTIDAS: SELECCIONA UNA PARTIDA DE LA LISTA PARA SEGUIRLA :)");
-                out.println("</div>");
-                out.println("<div class='colorletra3 colorfondo1 letra1' id='menubotones'>");
-                    out.println("<nav>");
-                    out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='historicoPartidas' > SEGUIR PARTIDAS </a>");
-                    out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='menu'> VOLVER AL MENÚ</a>");
-                    out.println("</nav>");
-                out.println("</div>");
+            out.println("<div class='colorletra1 colorfondo1 letra1' id='titulo'>");
+            out.println("CUATRO EN RAYA!");
+            out.println("</div>");
+            out.println("<div class='colorletra2 colorfondo2 letra1' id='subtitulo'>");
+            out.println("MIS PARTIDAS: SELECCIONA UNA PARTIDA DE LA LISTA PARA SEGUIRLA :)");
+            out.println("</div>");
+            out.println("<div class='colorletra3 colorfondo1 letra1' id='menubotones'>");
+            out.println("<nav>");
+            out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='historicoPartidas' > SEGUIR PARTIDAS </a>");
+            out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='menu'> VOLVER AL MENÚ</a>");
+            out.println("</nav>");
+            out.println("</div>");
             out.println("</div>");
 
-
-            out.println(idUsuario);
+            
             //nick_mio=(String)sesion.getAttribute("nick");
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
             SQL="SELECT IdPartida FROM detallespartida WHERE Activa=1 AND Turno= 1 AND IdJugador="+idUsuario;
-            
+
             st=con.createStatement();
             rs=st.executeQuery(SQL);
-            
-            out.println("<h1>PARTIDAS DISPONIBLES</h1>");
-            out.println("<form action=\"TestMovimiento\">");
-            out.println("<select name=\"continuar\">");
-            while(rs.next()){
-                idPartida=rs.getInt(1);
-                SQL2="SELECT Nick FROM usuarios INNER JOIN partidas ON usuarios.IdUsuario=partidas.IdJugador1 WHERE IdPartida="+idPartida; //Obtengo nick jugador1
-                st2=con.createStatement();
-                rs2=st2.executeQuery(SQL2);
-                SQL3="SELECT Nick FROM usuarios INNER JOIN partidas ON usuarios.IdUsuario=partidas.IdJugador2 WHERE IdPartida="+idPartida; //Obtengo nick jugador2
-                st3=con.createStatement();
-                rs3=st3.executeQuery(SQL3);
-                rs2.next();
-                rs3.next();                             
-                out.println("<option value=\""+idPartida+"\">"+rs2.getString(1)+"VS "+rs3.getString(1)+"</option>");
+
+            if(!rs.next()){
+                out.println("<h1>No tienes partidas disponibles en estos momentos</h1>");
+            }else{
+                out.println("<h1>PARTIDAS DISPONIBLES</h1>");
+                out.println("<form action=\"TestMovimiento\">");
+                out.println("<select name=\"continuar\">");
+                while(rs.next()){
+                    idPartida=rs.getInt(1);
+                    SQL2="SELECT Nick FROM usuarios INNER JOIN partidas ON usuarios.IdUsuario=partidas.IdJugador1 WHERE IdPartida="+idPartida; //Obtengo nick jugador1
+                    st2=con.createStatement();
+                    rs2=st2.executeQuery(SQL2);
+                    SQL3="SELECT Nick FROM usuarios INNER JOIN partidas ON usuarios.IdUsuario=partidas.IdJugador2 WHERE IdPartida="+idPartida; //Obtengo nick jugador2
+                    st3=con.createStatement();
+                    rs3=st3.executeQuery(SQL3);
+                    rs2.next();
+                    rs3.next();                             
+                    out.println("<option value=\""+idPartida+"\">"+rs2.getString(1)+"VS "+rs3.getString(1)+"</option>");
+                }
+                out.println("</select>");
+                out.println("<input type=\"submit\" value=\"SEGUIR PARTIDA\">");
+                out.println("</form>");
             }
-            out.println("</select>");
-            out.println("<input type=\"submit\" value=\"SEGUIR PARTIDA\">");
-            out.println("</form>");
-            
+
             out.println("<h2> PARTIDAS ACTIVAS </h2>");
             SQL_general="SELECT IdPartida FROM detallespartida WHERE Activa=1 AND IdJugador="+idUsuario;
             st_general=con.createStatement();
             rs_general=st_general.executeQuery(SQL_general);
             out.println("<table>");
             out.println("<tr><td>Identifificador</td><td>Jugador 1</td><td>Jugador 2</td></tr>");
-            
+
             while(rs_general.next()){
                 idPartida=rs_general.getInt(1);
                 SQL_general_1="SELECT Nick FROM usuarios INNER JOIN partidas ON usuarios.IdUsuario=partidas.IdJugador1 WHERE IdPartida="+idPartida;
