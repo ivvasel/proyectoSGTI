@@ -44,8 +44,11 @@ public class TestMovimiento extends HttpServlet{
                 }
             }
 
-            idPartida=req.getParameter("continuar");
-
+            
+            idPartida=(String) req.getAttribute("idPartida");
+            if(idPartida==null){
+                idPartida=req.getParameter("continuar");
+            }
             sesion=(HttpSession) req.getSession();
             sesion.setAttribute("idPartida",idPartida);
             nick=(String) sesion.getAttribute("nick");
