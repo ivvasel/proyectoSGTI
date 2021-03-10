@@ -45,8 +45,8 @@ public class NuevaPartida extends HttpServlet{
                         out.println("</div>");
                         out.println("<div class='colorletra3 colorfondo1 letra1' id='menubotones'>");
                             out.println("<nav>");
-                            out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='nueva/aleatoria' > VER TODOS LOS USUARIOS </a>");
-                            out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='amigos'> JUGAR CON AMIGO </a>");
+                            out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='aleatoria' > VER TODOS LOS USUARIOS </a>");
+                            out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='amigos'> JUGAR CON UN AMIGO </a>");
                             out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='menu'> VOLVER AL MENÚ </a>");
                             out.println("</nav>");
                         out.println("</div>");

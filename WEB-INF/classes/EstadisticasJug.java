@@ -34,17 +34,19 @@ public class EstadisticasJug extends HttpServlet {
                     out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/principal.css' type='text/css' media='all'>");
                     out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/nav.css'>");
                 out.println("</head>");
-
                 out.println("<body>");
-                    out.println("<div id='encabezado'>");
-                        out.println("<div class='colorletra1 colorfondo1 letra1' id='titulo'>");
-                            out.println("Estadísticas");
-                        out.println("</div>");
-                        out.println("<div class='colorfondo2' id='menubotones'>");
+                out.println("<div id='encabezado'>");
+                    out.println("<div class='colorletra1 colorfondo1 letra1' id='titulo'>");
+                    out.println("CUATRO EN RAYA!");
+                    out.println("</div>");
+                out.println("<div class='colorletra2 colorfondo2 letra1' id='subtitulo'>");
+                    out.println("ESTADÍSTICAS");
+                out.println("</div>");
+                        out.println("<div class='colorletra3 colorfondo1 letra1' id='menubotones'>");
                             out.println("<nav>");
-                                out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='historicoPartidas'> Histórico de partidas </a>");
-                                out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='historicoJugador'> Histórico de jugadores </a>");
-                                out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='menu'> Menú principal </a>");
+                                //out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='historicoPartidas'> Histórico de partidas </a>");
+                                //out.println("<a id='nav-enlace' class='letra2 colorfondo1 colorletra2' href='historicoJugador'> Histórico de jugadores </a>");
+                                out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='menu'> VOLVER AL MENÚ </a>");
                             out.println("</nav>");
                         out.println("</div>");
                     out.println("</div>");

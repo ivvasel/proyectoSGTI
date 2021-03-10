@@ -120,7 +120,7 @@
 
 <servlet-mapping>
 	<servlet-name>PartidaAleatoria</servlet-name>
-	<url-pattern>/nueva/aleatoria</url-pattern>
+	<url-pattern>/aleatoria</url-pattern>
 </servlet-mapping>
 
 <servlet-mapping>
