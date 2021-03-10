@@ -40,6 +40,7 @@ public class MisPartidas extends HttpServlet{
             out.println("<script src='web/recursos/javascripts/login.js'></script>");
             out.println("<link rel='stylesheet' href='web/recursos/estilos/principal.css' type='text/css' media='all'>");
             out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/nav.css'>");
+            out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/tablas.css'>");
             out.println("</head>");
             out.println("<body>");
             out.println("<div id='encabezado'>");
@@ -57,8 +58,6 @@ public class MisPartidas extends HttpServlet{
                 out.println("</div>");
             out.println("</div>");
 
-
-            out.println(idUsuario);
             //nick_mio=(String)sesion.getAttribute("nick");
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
@@ -91,7 +90,7 @@ public class MisPartidas extends HttpServlet{
             st_general=con.createStatement();
             rs_general=st_general.executeQuery(SQL_general);
             out.println("<table>");
-            out.println("<tr><td>Identifificador</td><td>Jugador 1</td><td>Jugador 2</td></tr>");
+            out.println("<tr> <td> Id </td> <td> Jugadores </td> </tr>");
             
             while(rs_general.next()){
                 idPartida=rs_general.getInt(1);
@@ -103,7 +102,7 @@ public class MisPartidas extends HttpServlet{
                 rs_general_2=st_general_2.executeQuery(SQL_general_2);
                 rs_general_1.next();
                 rs_general_2.next();
-                out.println("<tr><td>"+idPartida+"</td><td>"+rs_general_1.getString(1)+"</td><td>"+rs_general_2.getString(1)+"</td></tr>");
+                out.println("<tr><td>"+idPartida+"</td><td>"+rs_general_1.getString(1)+" vs "+rs_general_2.getString(1)+"</td></tr>");
             }
             out.println("</table>");            
             out.println("</body>");
