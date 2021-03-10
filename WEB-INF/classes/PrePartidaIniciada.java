@@ -35,7 +35,6 @@ public class PrePartidaIniciada extends HttpServlet{
             out.println("<html>");
             out.println("<body>");
             SQL="SELECT * FROM partidas WHERE IdJugador1="+idUsuario+ " ORDER BY IDPARTIDA DESC";
-            out.println(idUsuario);   
             rs=st.executeQuery(SQL);
             rs.next();
             idPartida=rs.getInt(1);  
