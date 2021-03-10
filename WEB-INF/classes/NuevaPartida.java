@@ -27,18 +27,32 @@ public class NuevaPartida extends HttpServlet{
             //rs=st.executeQuery(SQL);
             res.setContentType("text/html");
             out=res.getWriter();
+            out.println("<!DOCTYPE html>");
             out.println("<html>");
-            out.println("<head>");
-            out.println("<link rel=\"stylesheet\" href=\"menu.css\">");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>¿Con quién desea iniciar una partida?</h1>");
-            out.println("<nav>");
-            out.println("<a href=\"nueva/aleatoria\" class=\"nav-enlace\">VER TODOS LOS USUARIOS </a>");
-            out.println("<a href=\"amigos\" class=\"nav-enlace\">JUGAR CON UN AMIGO </a>");
-            out.println("</nav>");
-            out.println("</body>");
-            out.println("</html>"); 
+                out.println("<head>");
+                out.println("<title>6 en raya</title>");
+                out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/principal.css' type='text/css' media='all'>");
+                out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/nav.css'>");
+                
+                out.println("</head>");
+                out.println("<body>");
+                    out.println("<div id='encabezado'>");
+                        out.println("<div class='colorletra1 colorfondo1 letra1' id='titulo'>");
+                             out.println("CUATRO EN RAYA!");
+                        out.println("</div>");
+                        out.println("<div class='colorletra2 colorfondo2 letra1' id='subtitulo'>");
+                            out.println("Empieza una nueva partida. ¿A qué esperas?");
+                        out.println("</div>");
+                        out.println("<div class='colorletra3 colorfondo1 letra1' id='menubotones'>");
+                            out.println("<nav>");
+                            out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='aleatoria' > VER TODOS LOS USUARIOS </a>");
+                            out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='amigos'> JUGAR CON UN AMIGO </a>");
+                            out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='menu'> VOLVER AL MENÚ </a>");
+                            out.println("</nav>");
+                        out.println("</div>");
+                    out.println("</div>");
+                out.println("<h1 class = 'letra1 ' id='subtitulo'> ¿Con quién quieres iniciar una partida nueva? </h1>");
+                out.println("</body></html>");
            
         }catch (Exception e){
             System.err.println(e);

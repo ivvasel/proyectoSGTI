@@ -1,3 +1,4 @@
+
 //Este servlet muestra un menu select con las partidas que tengo pendientes Y ES MI TURNO
 import java.sql.*;
 import java.io.*;
@@ -31,8 +32,32 @@ public class MisPartidas extends HttpServlet{
             idUsuario=(int)sesion.getAttribute("idUsuario");
             res.setContentType("text/html");
             out=res.getWriter();
+            out.println("<!DOCTYPE html>");
             out.println("<html>");
+            out.println("<head>");
+            out.println("<meta charset='ISO 8859-1'/>");
+            out.println("<title>Partidas</title>");
+            out.println("<script src='web/recursos/javascripts/login.js'></script>");
+            out.println("<link rel='stylesheet' href='web/recursos/estilos/principal.css' type='text/css' media='all'>");
+            out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/nav.css'>");
+            out.println("</head>");
             out.println("<body>");
+            out.println("<div id='encabezado'>");
+                out.println("<div class='colorletra1 colorfondo1 letra1' id='titulo'>");
+                    out.println("CUATRO EN RAYA!");
+                out.println("</div>");
+                out.println("<div class='colorletra2 colorfondo2 letra1' id='subtitulo'>");
+                    out.println("MIS PARTIDAS: SELECCIONA UNA PARTIDA DE LA LISTA PARA SEGUIRLA :)");
+                out.println("</div>");
+                out.println("<div class='colorletra3 colorfondo1 letra1' id='menubotones'>");
+                    out.println("<nav>");
+                    out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='historicoPartidas' > SEGUIR PARTIDAS </a>");
+                    out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='menu'> VOLVER AL MENÚ</a>");
+                    out.println("</nav>");
+                out.println("</div>");
+            out.println("</div>");
+
+
             out.println(idUsuario);
             //nick_mio=(String)sesion.getAttribute("nick");
             Class.forName("com.mysql.jdbc.Driver");
@@ -66,7 +91,7 @@ public class MisPartidas extends HttpServlet{
             st_general=con.createStatement();
             rs_general=st_general.executeQuery(SQL_general);
             out.println("<table>");
-            out.println("<tr><td>Identifificador de partida</td><td>Nick Jugador 1</td><td>Nick Jugador 2</td></tr>");
+            out.println("<tr><td>Identifificador</td><td>Jugador 1</td><td>Jugador 2</td></tr>");
             
             while(rs_general.next()){
                 idPartida=rs_general.getInt(1);

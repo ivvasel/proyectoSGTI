@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app>
 <display-name>Proyecto STGI</display-name>
-<description>Proyecto de curso STGI 6 en raya </description>
+<description>Proyecto de curso STGI 6 en raya</description>
 
 <servlet>
-	<servlet-name>InicioSesionForm</servlet-name>
-	<servlet-class>InicioSesionForm</servlet-class>
-</servlet>
-
-
-
-<servlet>
-<servlet-name>Tabla</servlet-name>
-<description> Tablero inicial </description>
-<servlet-class>Tabla</servlet-class>
+	<servlet-name>ServletRegistro</servlet-name>
+	<servlet-class>ServletRegistro</servlet-class>
+	<description>Menu de registro</description>
 </servlet>
 
 <servlet>
-	<servlet-name>ponFicha</servlet-name>
-	<servlet-class>ponFicha</servlet-class>
+	<servlet-name>ServletInicioSes</servlet-name>
+	<servlet-class>ServletInicioSes</servlet-class>
+	<description>Menu de inicio de sesion</description>
+
 </servlet>
 
 <servlet>
 	<servlet-name>MenuPrincipal</servlet-name>
 	<servlet-class>MenuPrincipal</servlet-class>
+	<description>Menu del jugador tras iniciar sesion</description>
+
 </servlet>
 
 <servlet>
 	<servlet-name>NuevaPartida</servlet-name>
 	<servlet-class>NuevaPartida</servlet-class>
+	<description>Menu para que un jugador inice partida</description>
 </servlet>
 
 <servlet>
@@ -37,8 +35,36 @@
 </servlet>
 
 <servlet>
+	<servlet-name>CreaPartida</servlet-name>
+	<servlet-class>CreaPartida</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>MisPartidas</servlet-name>
+	<servlet-class>MisPartidas</servlet-class>
+	<description>Menu de partidas abiertas de un jugador</description>
+</servlet>
+
+<servlet>
 	<servlet-name>PartidaAmigos</servlet-name>
 	<servlet-class>PartidaAmigos</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>EstadisticasJug</servlet-name>
+	<servlet-class>EstadisticasJug</servlet-class>
+	<description>Menu de estadísticas de un jugador</description>
+	</servlet>
+
+<servlet>
+	<servlet-name>Tabla</servlet-name>
+	<description> Tablero inicial </description>
+	<servlet-class>Tabla</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>ponFicha</servlet-name>
+	<servlet-class>ponFicha</servlet-class>
 </servlet>
 
 <servlet>
@@ -47,18 +73,8 @@
 </servlet>
 
 <servlet>
-	<servlet-name>ServletRegistro</servlet-name>
-	<servlet-class>ServletRegistro</servlet-class>
-</servlet>
-
-<servlet>
 	<servlet-name>CheckInicioSesion</servlet-name>
 	<servlet-class>CheckInicioSesion</servlet-class>
-</servlet>
-
-<servlet>
-	<servlet-name>CreaPartida</servlet-name>
-	<servlet-class>CreaPartida</servlet-class>
 </servlet>
 
 <servlet>
@@ -72,31 +88,24 @@
 </servlet>
 
 <servlet>
-	<servlet-name>MisPartidas</servlet-name>
-	<servlet-class>MisPartidas</servlet-class>
+	<servlet-name>EditaCuenta</servlet-name>
+	<servlet-class>EditaCuenta</servlet-class>
 </servlet>
 
 
 <servlet-mapping>
-	<servlet-name>InicioSesionForm</servlet-name>
-	<url-pattern>/iniciosesionform</url-pattern>
+	<servlet-name>ServletRegistro</servlet-name>
+	<url-pattern>/registro</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>ServletInicioSes</servlet-name>
+	<url-pattern>/login</url-pattern>
 </servlet-mapping>
 
 <servlet-mapping>
 	<servlet-name>CheckInicioSesion</servlet-name>
 	<url-pattern>/iniciosesion</url-pattern>
-</servlet-mapping>
-
-
-
-<servlet-mapping>
-	<servlet-name>Tabla</servlet-name>
-	<url-pattern>/tabla</url-pattern>
-</servlet-mapping>
-
-<servlet-mapping>
-	<servlet-name>ponFicha</servlet-name>
-	<url-pattern>/servlets/ponFicha</url-pattern>
 </servlet-mapping>
 
 <servlet-mapping>
@@ -111,7 +120,7 @@
 
 <servlet-mapping>
 	<servlet-name>PartidaAleatoria</servlet-name>
-	<url-pattern>/nueva/aleatoria</url-pattern>
+	<url-pattern>/aleatoria</url-pattern>
 </servlet-mapping>
 
 <servlet-mapping>
@@ -125,13 +134,33 @@
 </servlet-mapping>
 
 <servlet-mapping>
-	<servlet-name>ServletRegistro</servlet-name>
-	<url-pattern>/registro</url-pattern>
-</servlet-mapping>
-
-<servlet-mapping>	
 	<servlet-name>CreaPartida</servlet-name>
 	<url-pattern>/nueva/crea</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>MisPartidas</servlet-name>
+	<url-pattern>/listapartidas</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>EstadisticasJug</servlet-name>
+	<url-pattern>/estadisticas</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>EditaCuenta</servlet-name>
+	<url-pattern>/editardatos</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>Tabla</servlet-name>
+	<url-pattern>/tabla</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>ponFicha</servlet-name>
+	<url-pattern>/servlets/ponFicha</url-pattern>
 </servlet-mapping>
 
 <servlet-mapping>
@@ -143,13 +172,6 @@
 	<servlet-name>PrePartidaIniciada</servlet-name>
 	<url-pattern>/prepartida</url-pattern>
 </servlet-mapping>
-
-<servlet-mapping>
-	<servlet-name>MisPartidas</servlet-name>
-	<url-pattern>/listapartidas</url-pattern>
-</servlet-mapping>
-
-
 
 
 

@@ -5,22 +5,27 @@
 <title>registro</title>
 <script src='/proyectoSGTI/web/recursos/javascripts/registro.js'></script>
 <script src='recursos/javascripts/registro.js'></script>
-<link rel='stylesheet' href='recursos/estilos/prueba.css' type='text/css' media='all'>
-<link rel='stylesheet' href='/proyectoSGTI/menu.css' type='text/css' media='all'>
-
+<link rel='stylesheet' href='recursos/estilos/registro.css' type='text/css' media='all'>
+<link rel='stylesheet' href='recursos/estilos/principal.css' type='text/css' media='all'>
 </head>
 
-
-
 <body>
-<h1> Registro de nuevo usuario </h1>
-<form action='http:\\localhost:8080/proyectoSGTI/registro' method='post' name='registro' onsubmit='return validar()'>
+    
+    <div id='encabezado'>
+    <div class='colorletra1 colorfondo1 letra1' id='titulo'>
+         CUATRO EN RAYA!
+    </div>
+    <div class='colorletra2 colorfondo2 letra1'id='subtitulo'>
+            Registro de nuevo usuario
+    </div>
+    </div>
+    
+<form action='http:\\localhost:8080/proyectoSGTI/registro' method='post' name='registro' onsubmit='return validar()' class='colorfondo2 letra2'>
         <table>
             <tr>
                 <td><strong>Usuario</strong></td>
                 <td><input name='nick' type='text' /></td>
             </tr>
-            <tr>
             <tr>
                 <td><strong>Nombre</strong></td>
                 <td><input name='nombre' type='text' /></td>
@@ -40,12 +45,12 @@
             </tr>
             
         </table>
-        <table>
-            <tr>
-                <td><input type='submit' value='Registrar'> </td>
-                <td><input type='button' value='Cancelar' onclick='history.back()' > </td>
-            </tr>
-
+        <div class='botones'>
+            
+                <input class ='letra2' type='submit' value='Registrar'> 
+                <input class ='letra2' type='button' value='Cancelar' onclick='history.back()' >
+            
+        </div>
     </form>
 </body>
 </html>
