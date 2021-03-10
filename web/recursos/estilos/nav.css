@@ -1,0 +1,13 @@
+#nav-enlace{
+    display: inline-block;
+    padding: 5px 15px;
+    text-decoration: none;
+}
+
+nav{
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+}
+
