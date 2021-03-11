@@ -1,0 +1,12 @@
+table{
+border-collapse: separate;
+
+}
+td{
+    border-collapse: separate;
+    padding: 5px;
+}
+tr{
+    border-collapse: separate;
+    padding: 20px;
+}

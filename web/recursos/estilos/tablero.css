@@ -1,0 +1,55 @@
+.filatablero{
+    height: 80px;
+    width: 80px;
+}
+
+.filabotones{
+    height: 80px;
+    width: 80px;
+}
+
+.fichaazul{
+	width: 80px;
+	height: 80px;
+	background: #06528F;
+	border-radius: 40px;
+}
+
+.ficharoja{
+    width: 80px;
+	height: 80px;
+	background: #8F5500;
+	border-radius: 40px;
+    border: 1px black;
+}
+
+.fichavacia{
+    background: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+}
+
+.casillas{
+    width: auto;
+    height: auto;
+}
+form{
+    margin: auto;
+    text-align: center;
+}
+table{
+    background-color: #F04738;
+    width: auto ;
+    height: auto; 
+    border-radius: 30px;
+    margin:auto;
+    padding: 5px;
+    border: 1px solid black;
+
+}
+
+.invisible{
+    font-size: 40px;
+}
+ 

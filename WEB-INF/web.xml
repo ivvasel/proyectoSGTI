@@ -1,13 +1,65 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app>
 <display-name>Proyecto STGI</display-name>
-<description>Proyecto de curso STGI </description>
-
+<description>Proyecto de curso STGI 6 en raya</description>
 
 <servlet>
-<servlet-name>Tabla</servlet-name>
-<description> Tablero inicial </description>
-<servlet-class>Tabla</servlet-class>
+	<servlet-name>ServletRegistro</servlet-name>
+	<servlet-class>ServletRegistro</servlet-class>
+	<description>Menu de registro</description>
+</servlet>
+
+<servlet>
+	<servlet-name>ServletInicioSes</servlet-name>
+	<servlet-class>ServletInicioSes</servlet-class>
+	<description>Menu de inicio de sesion</description>
+
+</servlet>
+
+<servlet>
+	<servlet-name>MenuPrincipal</servlet-name>
+	<servlet-class>MenuPrincipal</servlet-class>
+	<description>Menu del jugador tras iniciar sesion</description>
+
+</servlet>
+
+<servlet>
+	<servlet-name>NuevaPartida</servlet-name>
+	<servlet-class>NuevaPartida</servlet-class>
+	<description>Menu para que un jugador inice partida</description>
+</servlet>
+
+<servlet>
+	<servlet-name>PartidaAleatoria</servlet-name>
+	<servlet-class>PartidaAleatoria</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>CreaPartida</servlet-name>
+	<servlet-class>CreaPartida</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>MisPartidas</servlet-name>
+	<servlet-class>MisPartidas</servlet-class>
+	<description>Menu de partidas abiertas de un jugador</description>
+</servlet>
+
+<servlet>
+	<servlet-name>PartidaAmigos</servlet-name>
+	<servlet-class>PartidaAmigos</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>EstadisticasJug</servlet-name>
+	<servlet-class>EstadisticasJug</servlet-class>
+	<description>Menu de estadísticas de un jugador</description>
+	</servlet>
+
+<servlet>
+	<servlet-name>Tabla</servlet-name>
+	<description> Tablero inicial </description>
+	<servlet-class>Tabla</servlet-class>
 </servlet>
 
 <servlet>
@@ -16,15 +68,94 @@
 </servlet>
 
 <servlet>
-	<servlet-name>MenuPrincipal</servlet-name>
-	<servlet-class>MenuPrincipal</servlet-class>
+	<servlet-name>BuscaJugador</servlet-name>
+	<servlet-class>BuscaJugador</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>CheckInicioSesion</servlet-name>
+	<servlet-class>CheckInicioSesion</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>TestMovimiento</servlet-name>
+	<servlet-class>TestMovimiento</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>PrePartidaIniciada</servlet-name>
+	<servlet-class>PrePartidaIniciada</servlet-class>
+</servlet>
+
+<servlet>
+	<servlet-name>EditaCuenta</servlet-name>
+	<servlet-class>EditaCuenta</servlet-class>
 </servlet>
 
 
+<servlet-mapping>
+	<servlet-name>ServletRegistro</servlet-name>
+	<url-pattern>/registro</url-pattern>
+</servlet-mapping>
 
 <servlet-mapping>
-<servlet-name>Tabla</servlet-name>
-<url-pattern>/servlets/tabla</url-pattern>
+	<servlet-name>ServletInicioSes</servlet-name>
+	<url-pattern>/login</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>CheckInicioSesion</servlet-name>
+	<url-pattern>/iniciosesion</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>MenuPrincipal</servlet-name>
+	<url-pattern>/menu</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>NuevaPartida</servlet-name>
+	<url-pattern>/nueva</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>PartidaAleatoria</servlet-name>
+	<url-pattern>/aleatoria</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>PartidaAmigos</servlet-name>
+	<url-pattern>/amigos</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>BuscaJugador</servlet-name>
+	<url-pattern>/busca</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>CreaPartida</servlet-name>
+	<url-pattern>/nueva/crea</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>MisPartidas</servlet-name>
+	<url-pattern>/listapartidas</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>EstadisticasJug</servlet-name>
+	<url-pattern>/estadisticas</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>EditaCuenta</servlet-name>
+	<url-pattern>/editardatos</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>Tabla</servlet-name>
+	<url-pattern>/tabla</url-pattern>
 </servlet-mapping>
 
 <servlet-mapping>
@@ -33,9 +164,16 @@
 </servlet-mapping>
 
 <servlet-mapping>
-	<servlet-name>MenuPrincipal</servlet-name>
-	<url-pattern>/menu</url-pattern>
+	<servlet-name>TestMovimiento</servlet-name>
+	<url-pattern>/TestMovimiento</url-pattern>
 </servlet-mapping>
+
+<servlet-mapping>
+	<servlet-name>PrePartidaIniciada</servlet-name>
+	<url-pattern>/prepartida</url-pattern>
+</servlet-mapping>
+
+
 
 
 

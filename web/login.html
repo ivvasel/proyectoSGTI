@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<title>Login</title>
+<script src='recursos/javascripts/login.js'></script>
+<link rel='stylesheet' href='recursos/estilos/principal.css' type='text/css' media='all'>
+<link rel='stylesheet' href='recursos/estilos/login.css' type='text/css' media='all'>
+</head>
+
+
+<body>
+
+	<div id='encabezado'>
+		<div class='colorletra1 colorfondo1 letra1' id='titulo'>
+			 CUATRO EN RAYA!
+		</div>
+		<div class='colorletra2 colorfondo2 letra1'id='subtitulo'>
+			Inicio de sesión
+		</div>
+	</div>
+	
+	<form method='get' action='iniciosesion' name='login' onsubmit='return validar()' class='colorfondo2 letra2'> 
+		<table>
+			<tr>
+				<td><strong>Usuario</strong></td>
+				<td><input type='text' name='nick'></td>
+			</tr>
+			<tr>
+				<td><strong>Contraseña</strong></td>
+				<td><input type='password' name='password'></td>
+			</tr>		
+		</table>
+
+		<div class='botones'>            
+			<input class ='letra2' type='submit' value='Iniciar Sesión'> 
+			<input class ='letra2' type='button' value='Cancelar' onclick='history.back()' >	
+		</div>
+	</form>
+</body>
+</html>
