@@ -16,54 +16,6 @@
 CREATE DATABASE IF NOT EXISTS `6enraya` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `6enraya`;
 
--- Volcando estructura para tabla 6enraya.casillas
-CREATE TABLE IF NOT EXISTS `casillas` (
-  `IdCasilla` int(11) NOT NULL AUTO_INCREMENT,
-  `Numero` text NOT NULL DEFAULT '0',
-  PRIMARY KEY (`IdCasilla`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COMMENT='Información sonbre las diferentes casillas que forman el tablero (un total de 36)';
-
--- Volcando datos para la tabla 6enraya.casillas: ~34 rows (aproximadamente)
-/*!40000 ALTER TABLE `casillas` DISABLE KEYS */;
-INSERT INTO `casillas` (`IdCasilla`, `Numero`) VALUES
-	(1, '00'),
-	(2, '01'),
-	(3, '02'),
-	(4, '03'),
-	(5, '04'),
-	(6, '05'),
-	(7, '10'),
-	(8, '11'),
-	(9, '12'),
-	(10, '13'),
-	(11, '14'),
-	(12, '15'),
-	(13, '20'),
-	(14, '21'),
-	(15, '22'),
-	(16, '23'),
-	(17, '24'),
-	(18, '25'),
-	(19, '30'),
-	(20, '31'),
-	(21, '32'),
-	(22, '33'),
-	(23, '34'),
-	(24, '35'),
-	(25, '40'),
-	(26, '41'),
-	(27, '42'),
-	(28, '43'),
-	(29, '44'),
-	(30, '45'),
-	(31, '50'),
-	(32, '51'),
-	(33, '52'),
-	(34, '53'),
-	(35, '54'),
-	(36, '55');
-/*!40000 ALTER TABLE `casillas` ENABLE KEYS */;
-
 -- Volcando estructura para tabla 6enraya.detallespartida
 CREATE TABLE IF NOT EXISTS `detallespartida` (
   `IdPartida` int(11) NOT NULL,
@@ -80,8 +32,8 @@ CREATE TABLE IF NOT EXISTS `detallespartida` (
 -- Volcando datos para la tabla 6enraya.detallespartida: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `detallespartida` DISABLE KEYS */;
 INSERT INTO `detallespartida` (`IdPartida`, `IdJugador`, `Turno`, `Puntos`, `Activa`) VALUES
-	(71, 60, b'0', NULL, b'1'),
-	(71, 63, b'1', NULL, b'1');
+	(86, 67, b'1', 0, b'0'),
+	(86, 114, b'0', 3, b'0');
 /*!40000 ALTER TABLE `detallespartida` ENABLE KEYS */;
 
 -- Volcando estructura para tabla 6enraya.historicopartidas
@@ -94,10 +46,13 @@ CREATE TABLE IF NOT EXISTS `historicopartidas` (
   PRIMARY KEY (`IdHistorico`),
   KEY `FK_historicopartidas_usuarios` (`IdUsuario`),
   CONSTRAINT `FK_historicopartidas_usuarios` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Histórico de las partidas jugadas por un jugador';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='Histórico de las partidas jugadas por un jugador';
 
--- Volcando datos para la tabla 6enraya.historicopartidas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla 6enraya.historicopartidas: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `historicopartidas` DISABLE KEYS */;
+INSERT INTO `historicopartidas` (`IdHistorico`, `IdUsuario`, `Ganadas`, `Perdidas`, `PuntosTotales`) VALUES
+	(1, 114, 1, 0, 3),
+	(2, 67, 0, 1, 0);
 /*!40000 ALTER TABLE `historicopartidas` ENABLE KEYS */;
 
 -- Volcando estructura para tabla 6enraya.movimientos
@@ -112,12 +67,45 @@ CREATE TABLE IF NOT EXISTS `movimientos` (
   CONSTRAINT `FK_movimientos_usuarios` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla 6enraya.movimientos: ~13 rows (aproximadamente)
+-- Volcando datos para la tabla 6enraya.movimientos: ~34 rows (aproximadamente)
 /*!40000 ALTER TABLE `movimientos` DISABLE KEYS */;
 INSERT INTO `movimientos` (`IdPartida`, `IdUsuario`, `Casilla`) VALUES
-	(71, 63, '50'),
-	(71, 60, '51'),
-	(71, 60, '51');
+	(86, 114, '50'),
+	(86, 67, '51'),
+	(86, 114, '41'),
+	(86, 67, '40'),
+	(86, 114, '52'),
+	(86, 67, '30'),
+	(86, 114, '42'),
+	(86, 67, '53'),
+	(86, 114, '32'),
+	(86, 67, '20'),
+	(86, 114, '22'),
+	(86, 67, '12'),
+	(86, 114, '10'),
+	(86, 67, '54'),
+	(86, 114, '43'),
+	(86, 67, '44'),
+	(86, 114, '33'),
+	(86, 67, '23'),
+	(86, 114, '34'),
+	(86, 67, '24'),
+	(86, 114, '31'),
+	(86, 67, '21'),
+	(86, 114, '55'),
+	(86, 67, '13'),
+	(86, 114, '11'),
+	(86, 67, '00'),
+	(86, 114, '03'),
+	(86, 67, '14'),
+	(86, 114, '02'),
+	(86, 67, '01'),
+	(86, 114, '04'),
+	(86, 67, '45'),
+	(86, 114, '35'),
+	(86, 67, '25'),
+	(86, 114, '15'),
+	(86, 67, '05');
 /*!40000 ALTER TABLE `movimientos` ENABLE KEYS */;
 
 -- Volcando estructura para tabla 6enraya.partidas
@@ -130,82 +118,12 @@ CREATE TABLE IF NOT EXISTS `partidas` (
   KEY `FK_partidas_usuarios_2` (`IdJugador2`),
   CONSTRAINT `FK_partidas_usuarios` FOREIGN KEY (`IdJugador1`) REFERENCES `usuarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_partidas_usuarios_2` FOREIGN KEY (`IdJugador2`) REFERENCES `usuarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COMMENT='Datos básicos sobre partida';
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COMMENT='Datos básicos sobre partida';
 
--- Volcando datos para la tabla 6enraya.partidas: ~64 rows (aproximadamente)
+-- Volcando datos para la tabla 6enraya.partidas: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `partidas` DISABLE KEYS */;
 INSERT INTO `partidas` (`IdPartida`, `IdJugador1`, `IdJugador2`) VALUES
-	(1, 63, 27),
-	(2, 63, 27),
-	(3, 63, 27),
-	(4, 63, 27),
-	(5, 63, 27),
-	(6, 63, 27),
-	(7, 63, 27),
-	(8, 63, 60),
-	(9, 63, 60),
-	(10, 63, 3),
-	(11, 63, 3),
-	(12, 63, 2),
-	(13, 63, 3),
-	(14, 63, 3),
-	(15, 63, 2),
-	(16, 63, 2),
-	(17, 63, 2),
-	(18, 63, 2),
-	(19, 63, 2),
-	(20, 63, 2),
-	(21, 63, 2),
-	(22, 63, 2),
-	(23, 63, 2),
-	(24, 63, 2),
-	(25, 63, 2),
-	(26, 63, 2),
-	(27, 63, 2),
-	(28, 63, 2),
-	(29, 63, 2),
-	(30, 63, 2),
-	(31, 63, 2),
-	(32, 63, 2),
-	(33, 63, 2),
-	(34, 63, 2),
-	(35, 63, 2),
-	(36, 63, 2),
-	(37, 63, 2),
-	(38, 63, 2),
-	(39, 63, 2),
-	(40, 63, 2),
-	(41, 63, 2),
-	(42, 63, 2),
-	(43, 63, 2),
-	(44, 63, 2),
-	(45, 63, 2),
-	(46, 63, 2),
-	(47, 63, 2),
-	(48, 63, 2),
-	(49, 63, 2),
-	(50, 63, 2),
-	(51, 63, 2),
-	(52, 63, 2),
-	(53, 63, 2),
-	(54, 63, 2),
-	(55, 63, 2),
-	(56, 63, 2),
-	(57, 63, 2),
-	(58, 63, 2),
-	(59, 63, 2),
-	(60, 63, 2),
-	(61, 63, 2),
-	(62, 63, 2),
-	(63, 63, 2),
-	(64, 63, 2),
-	(65, 63, 2),
-	(66, 63, 2),
-	(67, 63, 2),
-	(68, 63, 2),
-	(69, 63, 2),
-	(70, 63, 60),
-	(71, 63, 60);
+	(86, 114, 67);
 /*!40000 ALTER TABLE `partidas` ENABLE KEYS */;
 
 -- Volcando estructura para tabla 6enraya.usuarios
@@ -216,20 +134,14 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `Contraseña` text DEFAULT NULL,
   `email` text DEFAULT NULL,
   PRIMARY KEY (`IdUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COMMENT='Información sobre un usuario';
+) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COMMENT='Información sobre un usuario';
 
--- Volcando datos para la tabla 6enraya.usuarios: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla 6enraya.usuarios: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`IdUsuario`, `Nick`, `Nombre`, `Contraseña`, `email`) VALUES
-	(2, 'Alvaro', 'DA', 'DA lopez', NULL),
-	(3, 'david', 'DA2', 'DA lopez', NULL),
-	(5, 'Perico', 'David', 'David', NULL),
-	(17, 'Juanito', 'DA2', 'DA lopez', NULL),
-	(27, 'Pablo', 'DA2', 'DA lopez', NULL),
-	(60, 'Beneit', 'DA2', 'DA lopez', NULL),
-	(61, 'DA2', 'DA2', 'DA lopez', NULL),
-	(62, 'dededi', 'dededi', 'dededi', NULL),
-	(63, 'damuocle', 'Deivid', 'david', NULL);
+	(67, 'IvanVa', 'Ivan', '1234', 'ivvasel@teleco.upv.es'),
+	(68, 'damuocle', 'David', 'damuocle', 'damuocle@teleco.upv.es'),
+	(114, 'jelopez', 'jose', '1234', 'jelopez@dcom.upv.es');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
