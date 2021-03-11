@@ -64,14 +64,15 @@ public class MisPartidas extends HttpServlet{
 
             st=con.createStatement();
             rs=st.executeQuery(SQL);
-
+            //rs.next();
             if(!rs.next()){
                 out.println("<h1>No tienes partidas disponibles en estos momentos</h1>");
             }else{
                 out.println("<h1>PARTIDAS DISPONIBLES</h1>");
                 out.println("<form action=\"TestMovimiento\">");
                 out.println("<select name=\"continuar\">");
-                while(rs.next()){
+                //while(rs.next()){
+                do{
                     idPartida=rs.getInt(1);
                     SQL2="SELECT Nick FROM usuarios INNER JOIN partidas ON usuarios.IdUsuario=partidas.IdJugador1 WHERE IdPartida="+idPartida; //Obtengo nick jugador1
                     st2=con.createStatement();
@@ -82,7 +83,7 @@ public class MisPartidas extends HttpServlet{
                     rs2.next();
                     rs3.next();                             
                     out.println("<option value=\""+idPartida+"\">"+rs2.getString(1)+"VS "+rs3.getString(1)+"</option>");
-                }
+                }while(rs.next());
                 out.println("</select>");
                 out.println("<input type=\"submit\" value=\"SEGUIR PARTIDA\">");
                 out.println("</form>");
