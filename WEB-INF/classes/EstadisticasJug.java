@@ -49,7 +49,7 @@ public class EstadisticasJug extends HttpServlet {
                             out.println("</nav>");
                         out.println("</div>");
                     out.println("</div>");
-                    out.println("<div class='colorletra2 letra1' id='mensajeEstad'>");
+                    out.println("<div class='letra1' id='subtitulo'>");
                         out.println("A continuación puedes observar los número totales de partidas jugadas, ganadas y perdidas. Además, podrás observar la suma total de puntos que has conseguido hasta ahora!");
                     out.println("</div>");
                 out.println("<table>");                

@@ -90,10 +90,10 @@ public class ServletRegistro extends HttpServlet {
             st.close();
             con.close();
 
-            res.sendRedirect("menu");
+            res.sendRedirect("index.html");
         }
         catch (Exception e) {System.out.println(e);}
-        /*//Añadir dentro del anterior cuando se solucione problema con la BD
+        /*//A?adir dentro del anterior cuando se solucione problema con la BD
         try{
             res.sendRedirect("menu");
         }catch(Exception e){}*/

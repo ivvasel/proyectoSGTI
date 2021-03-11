@@ -94,7 +94,7 @@ public class ServletInicioSes extends HttpServlet {
             }else{
                 out.println("<html><body>");
                 out.println("Los datos no son correctos. Por favor, vuelva a intentarlo <br>");
-                out.println("<a href=\"iniciosesionform\">VOLVER A INTENTAR </a>");
+                out.println("<a href='login'>VOLVER A INTENTAR </a>");
                 out.println("</body>");
                 out.println("</html>");
             }

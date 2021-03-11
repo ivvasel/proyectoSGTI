@@ -7,9 +7,9 @@ import javax.servlet.http.*;
 public class TestMovimiento extends HttpServlet{
     public void doGet (HttpServletRequest req, HttpServletResponse res){
         Connection con;
-        Statement st,st2,st_aux;
-        ResultSet rs,rs2,rs_aux;
-        String SQL,SQL2,SQL_aux;
+        Statement st,st2,st_aux,st_nick, st_nick2;
+        ResultSet rs,rs2,rs_aux,rs_nick, rs_nick2;
+        String SQL,SQL2,SQL_aux,SQL_nicks,SQL_nicks2;
         PrintWriter out;
         int tablero[][]=new int[6][6];
         String tablero_actualizado[][]=new String[6][6];
@@ -18,6 +18,7 @@ public class TestMovimiento extends HttpServlet{
         String columna;
         String nick;
         String rival="";
+        String nick1,nick2;
         HttpSession sesion,sesion2;
         int idUsuario_yo;
         String idPartida; 
@@ -63,6 +64,19 @@ public class TestMovimiento extends HttpServlet{
             //rs_nick.next();
             //idUsuario_yo=rs_nick.getInt(1);
 
+            SQL_nicks="SELECT usuarios.Nick FROM usuarios INNER JOIN partidas ON usuarios.IdUsuario=partidas.IdJugador1 WHERE IdPartida="+idPartida+"";
+            st_nick=con.createStatement();
+            rs_nick=st_nick.executeQuery(SQL_nicks);
+            rs_nick.next();
+            nick1=rs_nick.getString(1);
+
+            SQL_nicks2="SELECT usuarios.Nick FROM usuarios INNER JOIN partidas ON usuarios.IdUsuario=partidas.IdJugador2 WHERE IdPartida="+idPartida+"";
+            st_nick2=con.createStatement();
+            rs_nick2=st_nick.executeQuery(SQL_nicks2);
+            rs_nick2.next();
+            nick2=rs_nick2.getString(1);
+            
+
             SQL="SELECT movimientos.Casilla FROM movimientos INNER JOIN (partidas INNER JOIN usuarios ON partidas.IdJugador1=usuarios.IdUsuario)"+
             "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida="+idPartida+" AND movimientos.IdUsuario="+idUsuario_yo;//MIS FICHAS
             st=con.createStatement();
@@ -70,6 +84,7 @@ public class TestMovimiento extends HttpServlet{
 
             //Tengo donde est�n MIS FICHAS
             while(rs.next()){
+
                 casilla=rs.getString("Casilla");
                 fila=casilla.substring(0,1);  
                 columna=casilla.substring(1);
@@ -126,7 +141,7 @@ public class TestMovimiento extends HttpServlet{
                     out.println("CUATRO EN RAYA!");
                 out.println("</div>");
                 out.println("<div class='colorletra2 colorfondo2 letra1'id='subtitulo'>");
-                    out.println(""+nick+" vs "+rival+"");
+                    out.println(""+nick1+" vs "+nick2+"");
                 out.println("</div>");
             out.println("</div>");
 
