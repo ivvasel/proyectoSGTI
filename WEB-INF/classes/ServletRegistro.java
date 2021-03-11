@@ -18,7 +18,7 @@ public class ServletRegistro extends HttpServlet {
             //out.println("<meta charset='utf-8' />");
             out.println("<title>registro</title>");
             out.println("<script src='/proyectoSGTI/web/recursos/javascripts/registro.js'></script>");
-            out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/prueba.css' type='text/css' media='all'>");
+
             out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/registro.css' type='text/css' media='all'>");
             out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/principal.css' type='text/css' media='all'>");
             out.println("</head>");   

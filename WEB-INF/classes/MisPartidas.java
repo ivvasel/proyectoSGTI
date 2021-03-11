@@ -50,7 +50,7 @@ public class MisPartidas extends HttpServlet{
             out.println("<div class='colorletra3 colorfondo1 letra1' id='menubotones'>");
             out.println("<nav>");
             out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='historicoPartidas' > SEGUIR PARTIDAS </a>");
-            out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='menu'> VOLVER AL MENï¿½</a>");
+            out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='menu'> VOLVER AL MENÚ</a>");
             out.println("</nav>");
             out.println("</div>");
             out.println("</div>");
