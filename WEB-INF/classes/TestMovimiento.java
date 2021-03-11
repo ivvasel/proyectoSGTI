@@ -17,6 +17,7 @@ public class TestMovimiento extends HttpServlet{
         String fila;
         String columna;
         String nick;
+        String rival="";
         HttpSession sesion,sesion2;
         int idUsuario_yo;
         String idPartida; 
@@ -26,10 +27,6 @@ public class TestMovimiento extends HttpServlet{
             sesion2=(HttpSession)req.getSession(true);
             Class.forName("com.mysql.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/6enraya","root","");
-            res.setContentType("text/html");
-            out=res.getWriter();
-            out.println("<html>");
-            out.println("<head>");
 
             for(int i=0;i<6;i++){
                 botones_visibles[i]=true;
@@ -40,7 +37,7 @@ public class TestMovimiento extends HttpServlet{
                 for(int j=0;j<6;j++){
                     tablero[i][j]=0;
 
-                    tablero_actualizado[i][j]="<div class=\"fichavacia\"></div>";
+                    tablero_actualizado[i][j]="<div class='fichavacia '></div>";
                 }
             }
 
@@ -51,13 +48,11 @@ public class TestMovimiento extends HttpServlet{
             nick=(String) sesion.getAttribute("nick");
             sesion.setAttribute("idPartida",idPartida); //Guardo idPartida en variable de sesion para el siguiente servlet
 
-            out.println("OK var");
             SQL_aux="SELECT * FROM usuarios WHERE Nick='"+nick+"'";
             st_aux=con.createStatement();
             rs_aux=st_aux.executeQuery(SQL_aux);
             rs_aux.next();
             idUsuario_yo=rs_aux.getInt(1);
-            out.println(idUsuario_yo);
 
             
             //st_nick=con.createStatement();
@@ -70,30 +65,29 @@ public class TestMovimiento extends HttpServlet{
             st=con.createStatement();
             rs=st.executeQuery(SQL);
 
-            //Tengo donde están MIS FICHAS
+            //Tengo donde estï¿½n MIS FICHAS
             while(rs.next()){
-                out.println("BUCLE");
                 casilla=rs.getString("Casilla");
                 fila=casilla.substring(0,1);  
                 columna=casilla.substring(1);
                 tablero[Integer.parseInt(fila)][Integer.parseInt(columna)]=1;
             }
 
-            SQL2="SELECT movimientos.Casilla FROM movimientos INNER JOIN (partidas INNER JOIN usuarios ON partidas.IdJugador2=usuarios.IdUsuario)"+
+            SQL2="SELECT movimientos.Casilla, usuarios.Nick FROM movimientos INNER JOIN (partidas INNER JOIN usuarios ON partidas.IdJugador2=usuarios.IdUsuario)"+
             "ON movimientos.IdPartida=partidas.IdPartida WHERE movimientos.IdPartida="+idPartida+" AND movimientos.IdUsuario<>"+idUsuario_yo;
             st2=con.createStatement();
             rs2=st2.executeQuery(SQL2);
 
             //FICHAS RIVAL
             while(rs2.next()){
-                out.println("BUCLE rival");
+                rival=rs2.getString(2);
                 casilla=rs2.getString("Casilla");
                 fila=casilla.substring(0,1);
                 columna=casilla.substring(1);
                 tablero[Integer.parseInt(fila)][Integer.parseInt(columna)]=2;
             }
 
-            //Compruebo si está todo lleno arriba
+            //Compruebo si estï¿½ todo lleno arriba
             for(int i=0;i<6;i++){
                 if(tablero[0][i]!=0){
                     botones_visibles[i]=false;
@@ -117,12 +111,24 @@ public class TestMovimiento extends HttpServlet{
             out=res.getWriter();
             out.println("<html>");
             out.println("<head>");
-            out.println("<link rel="+"\"stylesheet\"" +"href="+"\"index.css\""+">");
+            out.println("<title>Jugando</title>");
+            out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/tablero.css'>");            
+            out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/principal.css' type='text/css' media='all'>");
+            out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/nav.css'>");
             out.println("</head>");
             out.println("<body>");
+
+            out.println("<div id='encabezado'>");
+                out.println("<div class='colorletra1 colorfondo1 letra1' id='titulo'>");
+                    out.println("CUATRO EN RAYA!");
+                out.println("</div>");
+                out.println("<div class='colorletra2 colorfondo2 letra1'id='subtitulo'>");
+                    out.println(""+nick+" vs "+rival+"");
+                out.println("</div>");
+            out.println("</div>");
+
             out.println("<form action="+"\"tabla\" method=\"post\"" +">");
-            out.println("<table width=" +"\"auto\"" +"height=" +"\"auto\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
-                +"cellpadding=" +"\"2\"" +">");
+            out.println("<table>");
             out.println("<tr align=" +"\"center\"" +">");
             for(int i=0;i<6;i++){
                 if(botones_visibles[i]){
@@ -133,11 +139,10 @@ public class TestMovimiento extends HttpServlet{
                 }
             }
                 out.println("</tr>");
-                out.println("</table>"); //FIN Primera fila de botones
+                //out.println("</table>"); //FIN Primera fila de botones
                 out.println("</form>");
 
-                out.println("<table width=" +"\"auto\"" +"height=" +"\"auto\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
-                    +"cellpadding=" +"\"2\"" +">");   
+                //out.println("<table>");   
                 for (int i=0;i<6;i++){
                     out.println("<tr class=\"filatablero\" align=" +"\"center\"" +">");
                     for (int j=0;j<6;j++){                

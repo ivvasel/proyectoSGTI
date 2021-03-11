@@ -20,8 +20,6 @@ public class MisPartidas extends HttpServlet{
         int idUsuario;
         int idPartida;
         //String nick_mio;
-        String rival1;
-        String rival2;
         String SQL_general_1,SQL_general_2;
         Statement st_general_1,st_general_2;
         ResultSet rs_general_1,rs_general_2;
@@ -67,7 +65,7 @@ public class MisPartidas extends HttpServlet{
             rs=st.executeQuery(SQL);
             
             out.println("<h1>PARTIDAS DISPONIBLES</h1>");
-            out.println("<form action=\"TestMovimiento\">");
+            out.println("<form action='TestMovimiento'>");
             out.println("<select name=\"continuar\">");
             while(rs.next()){
                 idPartida=rs.getInt(1);
@@ -78,8 +76,8 @@ public class MisPartidas extends HttpServlet{
                 st3=con.createStatement();
                 rs3=st3.executeQuery(SQL3);
                 rs2.next();
-                rs3.next();                             
-                out.println("<option value=\""+idPartida+"\">"+rs2.getString(1)+"VS "+rs3.getString(1)+"</option>");
+                rs3.next();                          
+                out.println("<option value=\""+idPartida+"\">"+rs2.getString(1)+" vs "+rs3.getString(1)+"</option>");
             }
             out.println("</select>");
             out.println("<input type=\"submit\" value=\"SEGUIR PARTIDA\">");

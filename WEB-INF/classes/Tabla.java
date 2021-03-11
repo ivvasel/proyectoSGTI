@@ -32,6 +32,29 @@ public class Tabla extends HttpServlet{
 
             out.println("<html>");
             out.println("<head>");
+            out.println("<title>Jugando</title>");
+            out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/tablero.css'>");            
+            out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/principal.css' type='text/css' media='all'>");
+            out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/nav.css'>");
+            out.println("</head>");
+            out.println("<body>");
+
+            out.println("<div id='encabezado'>");
+            out.println("<div class='colorletra1 colorfondo1 letra1' id='titulo'>");
+            out.println("CUATRO EN RAYA!");
+            out.println("</div>");
+        out.println("<div class='colorletra2 colorfondo2 letra1' id='subtitulo'>");
+            out.println("TURNO TERMINADO");
+        out.println("</div>");
+                out.println("<div class='colorletra2 colorfondo1 letra1'>");
+                    out.println("<nav>");
+                        out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='listapartidas'> MIS PARTIDAS </a>");
+                        out.println("<a id='nav-enlace' class='letra2 colorfondo2 colorletra2' href='menu'> VOLVER AL MENÚ </a>");
+                    out.println("</nav>");
+                out.println("</div>");
+            out.println("</div>");
+
+
             for (int i=0;i<6;i++){
                 botones_visibles[i]=true;
             }
@@ -183,12 +206,10 @@ public class Tabla extends HttpServlet{
                 st_actualiza_activa2=con.createStatement();
                 st_actualiza_activa2.executeUpdate(SQL_actualiza_activa2);
                 
-                out.println("<link rel="+"\"stylesheet\"" +"href="+"\"index.css\""+">");
-                out.println("</head>");
-                out.println("<body>");
+
+
                 out.println("<h1>LA PARTIDA HA TERMINADO</h1>");
-                out.println("<table width=" +"\"auto\"" +"height=" +"\"auto\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
-                    +"cellpadding=" +"\"2\"" +">");   
+                out.println("<table>");   
 
                 for (int i=0;i<6;i++){
                     out.println("<tr class=\"filatablero\" align=" +"\"center\"" +">");
@@ -200,7 +221,7 @@ public class Tabla extends HttpServlet{
                 out.println("</table>");
 
                 //CAJA DE LOS PUNTOS
-                out.println("<table border=\"3\">");
+                out.println("<table >");
                 out.println("<tr><td>TUS PUNTOS</td></tr>");
                 out.println("<tr><td>"+puntos1+"</td></tr>");
                 out.println("</table>");
@@ -209,10 +230,6 @@ public class Tabla extends HttpServlet{
                 out.println("<tr><td>PUNTOS DEL CONTRINCANTE</td></tr>");
                 out.println("<tr><td>"+puntos2+"</td></tr>");
                 out.println("</table>");
-
-                out.println("<nav>");
-                out.println("<a href=\"menu\">MENU</a>");
-                out.println("</nav>");
                 out.println("</body>");
                 out.println("</html>");
             }else{
@@ -225,14 +242,11 @@ public class Tabla extends HttpServlet{
                 st_Actualiza_turno2=con.createStatement();
                 st_Actualiza_turno2.executeUpdate(SQL_Actualiza_turno2);
 
-                out.println("<link rel="+"\"stylesheet\"" +"href="+"\"index.css\""+">");
-                out.println("</head>");
-                out.println("<body>");
+                
 
                 //out.println("<h1> TURNO DEL OPONENTE </h1>");
                 //Tablero para fichas
-                out.println("<table width=" +"\"auto\"" +"height=" +"\"auto\"" +"; border=" +"\"1\"" +"cellspacing=" +"\"2\"" 
-                    +"cellpadding=" +"\"2\"" +">");   
+                out.println("<table >");   
 
                 for (int i=0;i<6;i++){
                     out.println("<tr class=\"filatablero\" align=" +"\"center\"" +">");
@@ -242,10 +256,6 @@ public class Tabla extends HttpServlet{
                     out.println("</tr>");
                 }
                 out.println("</table>");
-
-                out.println("<nav>");
-                out.println("<a href=\"listapartidas\">MENU</a>");
-                out.println("</nav>");
                 out.println("</body>");
                 out.println("</html>");
             }
@@ -257,7 +267,7 @@ public class Tabla extends HttpServlet{
 
 
 
-    //Método para calcular los puntos al final de la pártida
+    //Mï¿½todo para calcular los puntos al final de la pï¿½rtida
     public int Puntos(int [][] tablero, int jugador) {
         //int tablero[][]=new int [6][6];
         int contador1=0;
@@ -265,7 +275,7 @@ public class Tabla extends HttpServlet{
         //FOR para jugador 1
             //Comprueba los puntos por filas
         for(int i=0;i<6;i++){
-            Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso última no cogida bien
+            Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso ï¿½ltima no cogida bien
             contador1=0;            
             for(int j=0;j<6;j++){
                 if(tablero[i][j]==jugador){ //Comprueba puntos jugador1
@@ -273,7 +283,7 @@ public class Tabla extends HttpServlet{
                     System.out.println("Secuencia en filas: "+i+j+" "+contador1);
                     continue;
                 }else{
-                    Puntos1=Puntos1 + calculapuntos(contador1); //Calcula puntos en relación al número de fichas consecutivas en una misma fila
+                    Puntos1=Puntos1 + calculapuntos(contador1); //Calcula puntos en relaciï¿½n al nï¿½mero de fichas consecutivas en una misma fila
                     contador1=0;
                 }
                 
@@ -281,7 +291,7 @@ public class Tabla extends HttpServlet{
         }
             //Comprueba los puntos por columnas
             for(int j=0;j<6;j++){
-                Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso última no cogida bien
+                Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso ï¿½ltima no cogida bien
                 contador1=0;
                 for(int i=0;i<6;i++){
                     if(tablero[i][j]==jugador){ //Comprueba puntos jugador1
@@ -289,12 +299,12 @@ public class Tabla extends HttpServlet{
                         System.out.println("Secuencia en columna: "+i+j+" "+contador1);
                         continue;
                     }else{
-                        Puntos1=Puntos1 + calculapuntos(contador1); //Calcula puntos en relación al número de fichas consecutivas
+                        Puntos1=Puntos1 + calculapuntos(contador1); //Calcula puntos en relaciï¿½n al nï¿½mero de fichas consecutivas
                         contador1=0;
                     }
                 }
             }
-            Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso última no cogida bien
+            Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso ï¿½ltima no cogida bien
             contador1=0;            
             //Comprueba los puntos de la daigonal descendente
             for(int i=0, j=0; i<6 && j<6; i++,j++){
@@ -304,11 +314,11 @@ public class Tabla extends HttpServlet{
                     continue;        
                 
                 }else{
-                    Puntos1=Puntos1 + calculapuntos(contador1); //Calcula puntos en relación al número de fichas consecutivas
+                    Puntos1=Puntos1 + calculapuntos(contador1); //Calcula puntos en relaciï¿½n al nï¿½mero de fichas consecutivas
                     contador1=0;                    
                 }   
             }
-            Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso última no cogida bien
+            Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso ï¿½ltima no cogida bien
             contador1=0;
             //Comprueba los puntos de la diagonal ascendente
 
@@ -319,13 +329,13 @@ public class Tabla extends HttpServlet{
                     continue;            
                 
                 }else{
-                    Puntos1=Puntos1 + calculapuntos(contador1); //Calcula puntos en relación al número de fichas consecutivas
+                    Puntos1=Puntos1 + calculapuntos(contador1); //Calcula puntos en relaciï¿½n al nï¿½mero de fichas consecutivas
                     contador1=0;
                     
                 }                
                 
             }    
-            Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso última no cogida bien
+            Puntos1=Puntos1 + calculapuntos(contador1); //por si acaso ï¿½ltima no cogida bien
             contador1=0;
             return Puntos1;
 

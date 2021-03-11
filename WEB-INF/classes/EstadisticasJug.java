@@ -30,7 +30,6 @@ public class EstadisticasJug extends HttpServlet {
                 out.println("<head>");
                     out.println("<meta charset='ISO 8859-1' />");
                     out.println("<title>Estadisticas</title>");
-                    out.println("<script src='web/recursos/javascripts/login.js'></script>");
                     out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/principal.css' type='text/css' media='all'>");
                     out.println("<link rel='stylesheet' href='/proyectoSGTI/web/recursos/estilos/nav.css'>");
                 out.println("</head>");
