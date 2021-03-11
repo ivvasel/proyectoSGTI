@@ -49,13 +49,13 @@ public class EstadisticasJug extends HttpServlet {
                             out.println("</nav>");
                         out.println("</div>");
                     out.println("</div>");
-                    out.println("<div class='letra1' id='subtitulo'>");
+                    /*out.println("<div class='letra1' id='subtitulo'>");
                         out.println("A continuación puedes observar los número totales de partidas jugadas, ganadas y perdidas. Además, podrás observar la suma total de puntos que has conseguido hasta ahora!");
-                    out.println("</div>");
-                out.println("<table>");                
-                out.println("<tr> <td> Partidas ganadas </td><td> '"+ rs.getString("Ganadas")+"' </td></tr>");
-                out.println("<tr> <td> Partidas perdidas </td><td> '"+ rs.getString("Perdidas")+"' </td></tr>");
-                out.println("<tr> <td> Puntos totales </td><td> '"+ rs.getString("PuntosTotales")+"' </td></tr>");
+                    out.println("</div>");*/
+                out.println("<table align='center' id='subtitulo'>");                
+                out.println("<tr> <td> Partidas ganadas </td><td> "+ rs.getString("Ganadas")+" </td></tr>");
+                out.println("<tr> <td> Partidas perdidas </td><td> "+ rs.getString("Perdidas")+" </td></tr>");
+                out.println("<tr> <td> Puntos totales </td><td> "+ rs.getString("PuntosTotales")+" </td></tr>");
                 
                 out.println("</table>");
 
