@@ -32,8 +32,8 @@ public class PrePartidaIniciada extends HttpServlet{
             
             res.setContentType("text/html");
             out=res.getWriter();
-            out.println("<html>");
-            out.println("<body>");
+            //out.println("<html>");
+           // out.println("<body>");
             SQL="SELECT * FROM partidas WHERE IdJugador1="+idUsuario+ " ORDER BY IDPARTIDA DESC";
             rs=st.executeQuery(SQL);
             rs.next();
@@ -50,13 +50,17 @@ public class PrePartidaIniciada extends HttpServlet{
             st_actualiza2=con.createStatement();
             st_actualiza2.executeUpdate(SQL_actualiza2);
             
-            
-            out.println("<h1> COMIENZA LA PARTIDA...</h1>");
-            out.println("<form action=\"TestMovimiento\">");
-            out.println("<input type=\"submit\" value=\""+idPartida+"\" name=\"continuar\">");
-            out.println("</form>");
-            out.println("</body>");
-            out.println("</html>");
+            String idPartida_str=Integer.toString(idPartida);
+            req.setAttribute("idPartida",idPartida_str);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/TestMovimiento");
+            dispatcher.forward(req,res);
+            //out.println("<h1> COMIENZA LA PARTIDA...</h1>");
+            //out.println("<form action=\"TestMovimiento\">");
+            //out.println("<h2>Pulsa el botón para comenzar: </h2>");
+            //out.println("<input type=\"submit\" value=\""+idPartida+"\" name=\"continuar\">");
+           // out.println("</form>");
+            //out.println("</body>");
+            //out.println("</html>");
             rs_aux.close();
             //rs.close();
             st_aux.close();
