@@ -135,7 +135,7 @@ public class TestMovimiento extends HttpServlet{
             out.println("<tr align=" +"\"center\"" +">");
             for(int i=0;i<6;i++){
                 if(botones_visibles[i]){
-                    out.println("<td class="+"\"filabotones\""+">"+"<input type=" +"\"submit\"" +"name="+"\"BO"+i+"\"" +"value="+"\"BO"+i+"\""+"class="+
+                    out.println("<td class="+"\"filabotones\""+">"+"<input type=" +"\"submit\"" +"name="+"\"BO"+i+"\"" +"value="+"\"&#x2B07"+"\""+"class="+
                         "\"invisible\""+">");
                 }else{
                     out.println("<td class="+"\"filabotones\">");
